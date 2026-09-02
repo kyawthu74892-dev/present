@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Group V Audience Picker</title>
+
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+    <div id="entryScreen">
+
+    <div id="entryAmbientGlow"></div>
+
+    <div id="entryContent">
+
+        <div id="entryEyebrow">
+            GROUP V
+        </div>
+
+        <div id="entryAccentLine"></div>
+
+        <h1 id="entryTitle">
+            Webpage Designed &amp; Developed
+            <br>
+            <span>
+                by Group V in Collaboration with
+
+                <img
+                    class="chatgptCreditLogo"
+                    src="images/chatgpt-logo.svg"
+                    alt=""
+                    aria-hidden="true"
+                >
+
+                ChatGPT
+            </span>
+        </h1>
+
+        <div id="entryTeam">
+
+            <div class="entryRow entryRowThree">
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-003
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Kaung Myat
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-005
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Kyaw Thu Hein
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-008
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Aung Kaung Sett
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="entryRow entryRowTwo">
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-033
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Chan Nyein Htet
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-045
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Aung Khant Min
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button id="enterButton">
+
+            <span>
+                ENTER
+            </span>
+
+            <span class="entryArrow">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+    <div id="backgroundEffects"></div>
+
+    <header>
+
+        <h1>
+            <span class="headerGroupAccent">
+                GROUP V
+            </span>
+
+            AUDIENCE PICKER
+        </h1>
+
+        <p id="subtitle"></p>
+
+    </header>
+
+    <main>
+
+        <div class="wheel-wrapper">
+
+           <div id="pointer">
+                ▼
+            </div>
+
+            <div id="wheelContainer">
+
+                <svg id="wheelSVG"
+                    viewBox="0 0 800 800">
+                </svg>
+
+                <button id="spinButton">
+                    SPIN
+                </button>
+
+           </div>
+
+        </div>
+
+        <div id="questionScreen" class="hiddenQuestion">
+
+            <div id="spotlight"></div>
+
+            <div id="questionContent">
+
+               <div id="questionTitle">
+                    QUESTION <span id="questionNumber"></span>
+                </div>
+
+
+                <div id="questionText">
+            
+                </div>
+
+                <button id="continueButton">
+                    CONTINUE
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="finaleScreen"
+            class="finaleHidden"
+            aria-hidden="true"
+        >
+
+            <div id="finaleAmbientGlow"></div>
+
+            <section
+                id="completionScene"
+                class="finaleScene finaleSceneHidden"
+                aria-labelledby="completionTitle"
+            >
+
+                <div class="finaleEyebrow">
+                    GROUP V
+                    <span aria-hidden="true">•</span>
+                    ALL FIVE QUESTIONS COMPLETED
+                </div>
+
+                <h2 id="completionTitle">
+                    THANK YOU FOR PARTICIPATING
+                </h2>
+
+                <p class="finaleLead">
+                    We sincerely appreciate your time and participation.                
+                </p>
+
+                <div class="participantSection">
+
+                    <div class="participantLabel">
+                        SELECTED AUDIENCE MEMBERS
+                    </div>
+
+                    <div
+                        id="participantCards"
+                        aria-label="Selected audience members"
+                    ></div>
+
+                </div>
+
+                <p class="finalePrompt">
+                    Before we continue&hellip;
+                </p>
+
+                <div class="finaleActions">
+
+                    <button
+                        id="finaleWheelButton"
+                        class="finaleButton finaleButtonSecondary"
+                    >
+                        RETURN TO WHEEL
+                    </button>
+
+                    <button
+                        id="finalQuestionButton"
+                        class="finaleButton finaleButtonPrimary"
+                    >
+                        ONE FINAL QUESTION
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section
+                id="finalQuestionScene"
+                class="finaleScene finaleSceneHidden"
+                aria-labelledby="finalQuestionHeading"
+            >
+
+                <div id="everyoneMessage">
+                    THIS FINAL QUESTION
+                    <br>
+                    IS FOR EVERYONE.
+                </div>
+
+                <div id="finalQuestionBlock">
+
+                    <div class="finalQuestionEyebrow">
+                        ONE FINAL QUESTION
+                    </div>
+
+        <h2 id="finalQuestionHeading">
+            WHY DO YOU THINK
+        <br>
+            WE MADE THIS WEBSITE?
+        </h2>
+
+        <button
+            id="revealAnswerButton"
+            data-presentation-url="https://www.canva.com/design/DAHT6Pv62GE/EPnTvjaZ57Un90zl3-RVRw/view"
+        >
+            LET'S FIND OUT
+        <span aria-hidden="true">→</span>
+        </button>
+
+                    <div
+                        id="presentationLinkNotice"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <div id="winnerPopup" class="hidden">
+
+    <div class="popupCard">
+
+        <button id="closePopup">
+            ✕
+        </button>
+
+        <div id="popupEffects"></div>
+
+        <h3>
+            Selected Audience 
+        </h3>
+
+        <div id="identitySection">
+
+            <div id="winnerNumber"></div>
+
+            <div id="idPrefix"></div>
+
+        </div>
+
+        <div id="winnerName"></div>
+
+        <div id="readyPrompt" class="hiddenPrompt">
+            READY?
+        </div>
+
+        <div id="tabPrompt" class="hiddenPrompt">
+            PRESS <span id="tabKey">TAB</span> TO START QUESTION
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div id="confettiContainer"></div>
+
+    <div id="balloonContainer"></div>
+
+    <div id="sparkleContainer"></div>
+
+    <div id="curtainContainer">
+
+        <div id="leftCurtain"></div>
+
+        <div id="rightCurtain"></div>
+
+    </div>
+
+    <button id="consoleButton" aria-label="Open Presenter Console">
+        ⚙
+    </button>
+
+    <div id="consoleOverlay" class="consoleHidden"></div>
+
+    <aside id="presenterConsole" class="consoleClosed">
+
+        <div class="consoleHeader">
+
+            <div>
+                <div class="consoleEyebrow">
+                    GROUP V
+                </div>
+
+                <h2>
+                    Presenter Console
+                </h2>
+            </div>
+
+            <button id="closeConsole">
+                ✕
+            </button>
+
+        </div>
+
+            <div class="consoleSection">
+
+                <h3>Presentation Status</h3>
+
+                <div class="statusGrid">
+
+                    <div class="statusCard">
+                        <span>Questions</span>
+                        <strong id="consoleRound">0 / 5</strong>
+                    </div>
+
+                    <div class="statusCard">
+                        <span>Audience Available</span>
+                        <strong id="consoleAudienceLeft">52</strong>
+
+                </div>
+
+            </div>
+
+        <div class="consoleSection">
+
+            <h3>Audio</h3>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Background Music</strong>
+                    <small>Presentation soundtrack</small>
+                </span>
+
+                <input
+                    id="musicToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Sound Effects</strong>
+                    <small>Wheel, curtain and reveal sounds</small>
+                </span>
+
+                <input
+                    id="effectsToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Voice</strong>
+                    <small>Question voice announcement</small>
+                </span>
+
+                <input
+                    id="voiceToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+        </div>
+
+    <div class="consoleSection">
+
+        <h3>Presentation</h3>
+
+        <label class="consoleToggle">
+
+            <span>
+                <strong>Idle Rotation</strong>
+                <small>Rotate wheel while waiting</small>
+            </span>
+
+            <input
+                id="idleToggle"
+                type="checkbox"
+                checked
+            >
+
+            <span class="toggleSwitch"></span>
+
+        </label>
+
+    </div>
+
+    <div class="consoleSection">
+
+        <h3>Keyboard Shortcuts</h3>
+
+<div class="shortcutRow">
+    <kbd>SPACE</kbd>
+    <span>Spin wheel</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>TAB</kbd>
+    <span>Start question</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>ENTER</kbd>
+    <span>Continue</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>R</kbd>
+    <span>Return to wheel</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>C</kbd>
+    <span>Open or close console</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>M</kbd>
+    <span>Mute or restore all audio</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>ESC</kbd>
+    <span>Close console</span>
+</div>
+
+    </div>
+
+    <div class="consoleFooter">
+        GROUP V Audience Picker
+        <br>
+        Version 1.0
+    </div>
+
+</aside>
+
+<div
+    id="audioToast"
+    role="status"
+    aria-live="polite"
+>
+    <div
+        id="audioToastIcon"
+        aria-hidden="true"
+    ></div>
+
+    <span id="audioToastText">
+        AUDIO MUTED
+    </span>
+</div>
+
+<script src="script.js?v=6"></script>
+
+</body>
+
+</html>
