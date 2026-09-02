@@ -1,0 +1,7059 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Group V Audience Picker</title>
+
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+    <div id="entryScreen">
+
+    <div id="entryAmbientGlow"></div>
+
+    <div id="entryContent">
+
+        <div id="entryEyebrow">
+            GROUP V
+        </div>
+
+        <div id="entryAccentLine"></div>
+
+        <h1 id="entryTitle">
+            Webpage Designed &amp; Developed
+            <br>
+            <span>
+                by Group V in Collaboration with
+
+                <img
+                    class="chatgptCreditLogo"
+                    src="images/chatgpt-logo.svg"
+                    alt=""
+                    aria-hidden="true"
+                >
+
+                ChatGPT
+            </span>
+        </h1>
+
+        <div id="entryTeam">
+
+            <div class="entryRow entryRowThree">
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-003
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Kaung Myat
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-005
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Kyaw Thu Hein
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-008
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Aung Kaung Sett
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="entryRow entryRowTwo">
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-033
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Chan Nyein Htet
+                    </div>
+
+                </div>
+
+
+                <div class="entryMember">
+
+                    <div class="entryStudentId">
+                        2025-MIIT-ECE-045
+                    </div>
+
+                    <div class="entryStudentName">
+                        Mg. Aung Khant Min
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button id="enterButton">
+
+            <span>
+                ENTER
+            </span>
+
+            <span class="entryArrow">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+    <div id="backgroundEffects"></div>
+
+    <header>
+
+        <h1>
+            <span class="headerGroupAccent">
+                GROUP V
+            </span>
+
+            AUDIENCE PICKER
+        </h1>
+
+        <p id="subtitle"></p>
+
+    </header>
+
+    <main>
+
+        <div class="wheel-wrapper">
+
+           <div id="pointer">
+                ▼
+            </div>
+
+            <div id="wheelContainer">
+
+                <svg id="wheelSVG"
+                    viewBox="0 0 800 800">
+                </svg>
+
+                <button id="spinButton">
+                    SPIN
+                </button>
+
+           </div>
+
+        </div>
+
+        <div id="questionScreen" class="hiddenQuestion">
+
+            <div id="spotlight"></div>
+
+            <div id="questionContent">
+
+               <div id="questionTitle">
+                    QUESTION <span id="questionNumber"></span>
+                </div>
+
+
+                <div id="questionText">
+            
+                </div>
+
+                <button id="continueButton">
+                    CONTINUE
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="finaleScreen"
+            class="finaleHidden"
+            aria-hidden="true"
+        >
+
+            <div id="finaleAmbientGlow"></div>
+
+            <section
+                id="completionScene"
+                class="finaleScene finaleSceneHidden"
+                aria-labelledby="completionTitle"
+            >
+
+                <div class="finaleEyebrow">
+                    GROUP V
+                    <span aria-hidden="true">•</span>
+                    ALL FIVE QUESTIONS COMPLETED
+                </div>
+
+                <h2 id="completionTitle">
+                    THANK YOU FOR PARTICIPATING
+                </h2>
+
+                <p class="finaleLead">
+                    We sincerely appreciate your time and participation.                
+                </p>
+
+                <div class="participantSection">
+
+                    <div class="participantLabel">
+                        SELECTED AUDIENCE MEMBERS
+                    </div>
+
+                    <div
+                        id="participantCards"
+                        aria-label="Selected audience members"
+                    ></div>
+
+                </div>
+
+                <p class="finalePrompt">
+                    Before we continue&hellip;
+                </p>
+
+                <div class="finaleActions">
+
+                    <button
+                        id="finaleWheelButton"
+                        class="finaleButton finaleButtonSecondary"
+                    >
+                        RETURN TO WHEEL
+                    </button>
+
+                    <button
+                        id="finalQuestionButton"
+                        class="finaleButton finaleButtonPrimary"
+                    >
+                        ONE FINAL QUESTION
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section
+                id="finalQuestionScene"
+                class="finaleScene finaleSceneHidden"
+                aria-labelledby="finalQuestionHeading"
+            >
+
+                <div id="everyoneMessage">
+                    THIS FINAL QUESTION
+                    <br>
+                    IS FOR EVERYONE.
+                </div>
+
+                <div id="finalQuestionBlock">
+
+                    <div class="finalQuestionEyebrow">
+                        ONE FINAL QUESTION
+                    </div>
+
+        <h2 id="finalQuestionHeading">
+            WHY DO YOU THINK
+        <br>
+            WE MADE THIS WEBSITE?
+        </h2>
+
+        <button
+            id="revealAnswerButton"
+            data-presentation-url="https://www.canva.com/design/DAHT6Pv62GE/EPnTvjaZ57Un90zl3-RVRw/view"
+        >
+            LET'S FIND OUT
+        <span aria-hidden="true">→</span>
+        </button>
+
+                    <div
+                        id="presentationLinkNotice"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <div id="winnerPopup" class="hidden">
+
+    <div class="popupCard">
+
+        <button id="closePopup">
+            ✕
+        </button>
+
+        <div id="popupEffects"></div>
+
+        <h3>
+            Selected Audience 
+        </h3>
+
+        <div id="identitySection">
+
+            <div id="winnerNumber"></div>
+
+            <div id="idPrefix"></div>
+
+        </div>
+
+        <div id="winnerName"></div>
+
+        <div id="readyPrompt" class="hiddenPrompt">
+            READY?
+        </div>
+
+        <div id="tabPrompt" class="hiddenPrompt">
+            PRESS <span id="tabKey">TAB</span> TO START QUESTION
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div id="confettiContainer"></div>
+
+    <div id="balloonContainer"></div>
+
+    <div id="sparkleContainer"></div>
+
+    <div id="curtainContainer">
+
+        <div id="leftCurtain"></div>
+
+        <div id="rightCurtain"></div>
+
+    </div>
+
+    <button id="consoleButton" aria-label="Open Presenter Console">
+        ⚙
+    </button>
+
+    <div id="consoleOverlay" class="consoleHidden"></div>
+
+    <aside id="presenterConsole" class="consoleClosed">
+
+        <div class="consoleHeader">
+
+            <div>
+                <div class="consoleEyebrow">
+                    GROUP V
+                </div>
+
+                <h2>
+                    Presenter Console
+                </h2>
+            </div>
+
+            <button id="closeConsole">
+                ✕
+            </button>
+
+        </div>
+
+            <div class="consoleSection">
+
+                <h3>Presentation Status</h3>
+
+                <div class="statusGrid">
+
+                    <div class="statusCard">
+                        <span>Questions</span>
+                        <strong id="consoleRound">0 / 5</strong>
+                    </div>
+
+                    <div class="statusCard">
+                        <span>Audience Available</span>
+                        <strong id="consoleAudienceLeft">52</strong>
+
+                </div>
+
+            </div>
+
+        <div class="consoleSection">
+
+            <h3>Audio</h3>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Background Music</strong>
+                    <small>Presentation soundtrack</small>
+                </span>
+
+                <input
+                    id="musicToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Sound Effects</strong>
+                    <small>Wheel, curtain and reveal sounds</small>
+                </span>
+
+                <input
+                    id="effectsToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+            <label class="consoleToggle">
+
+                <span>
+                    <strong>Voice</strong>
+                    <small>Question voice announcement</small>
+                </span>
+
+                <input
+                    id="voiceToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="toggleSwitch"></span>
+
+            </label>
+
+        </div>
+
+    <div class="consoleSection">
+
+        <h3>Presentation</h3>
+
+        <label class="consoleToggle">
+
+            <span>
+                <strong>Idle Rotation</strong>
+                <small>Rotate wheel while waiting</small>
+            </span>
+
+            <input
+                id="idleToggle"
+                type="checkbox"
+                checked
+            >
+
+            <span class="toggleSwitch"></span>
+
+        </label>
+
+    </div>
+
+    <div class="consoleSection">
+
+        <h3>Keyboard Shortcuts</h3>
+
+<div class="shortcutRow">
+    <kbd>SPACE</kbd>
+    <span>Spin wheel</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>TAB</kbd>
+    <span>Start question</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>ENTER</kbd>
+    <span>Continue</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>R</kbd>
+    <span>Return to wheel</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>C</kbd>
+    <span>Open or close console</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>M</kbd>
+    <span>Mute or restore all audio</span>
+</div>
+
+<div class="shortcutRow">
+    <kbd>ESC</kbd>
+    <span>Close console</span>
+</div>
+
+    </div>
+
+    <div class="consoleFooter">
+        GROUP V Audience Picker
+        <br>
+        Version 1.0
+    </div>
+
+</aside>
+
+<div
+    id="audioToast"
+    role="status"
+    aria-live="polite"
+>
+    <div
+        id="audioToastIcon"
+        aria-hidden="true"
+    ></div>
+
+    <span id="audioToastText">
+        AUDIO MUTED
+    </span>
+</div>
+
+<script src="script.js?v=6"></script>
+
+</body>
+
+</html>
+
+const svg = document.getElementById("wheelSVG");
+
+const spinButton = document.getElementById("spinButton");
+
+const confettiContainer = document.getElementById("confettiContainer");
+
+const pointer = document.getElementById("pointer");
+
+const winnerPopup = document.getElementById("winnerPopup");
+
+const winnerNumber = document.getElementById("winnerNumber");
+
+const winnerName = document.getElementById("winnerName");
+
+const idPrefix = document.getElementById("idPrefix");
+
+const closePopup = document.getElementById("closePopup");
+
+const balloonContainer = document.getElementById("balloonContainer");
+
+const popupEffects = document.getElementById("popupEffects");
+
+const readyPrompt = document.getElementById("readyPrompt");
+
+const tabPrompt = document.getElementById("tabPrompt");
+
+const curtainContainer = document.getElementById("curtainContainer");
+
+const questionScreen = document.getElementById("questionScreen");
+
+const spotlight = document.getElementById("spotlight");
+
+const questionTitle = document.getElementById("questionTitle");
+
+const questionText = document.getElementById("questionText");
+
+const questionNumber = document.getElementById("questionNumber");
+
+const consoleButton = document.getElementById("consoleButton");
+
+const presenterConsole = document.getElementById("presenterConsole");
+
+const closeConsole = document.getElementById("closeConsole");
+
+const consoleOverlay = document.getElementById("consoleOverlay");
+
+const consoleRound = document.getElementById("consoleRound");
+
+const consoleAudienceLeft = document.getElementById("consoleAudienceLeft");
+
+const musicToggle = document.getElementById("musicToggle");
+
+const effectsToggle = document.getElementById("effectsToggle");
+
+const voiceToggle = document.getElementById("voiceToggle");
+
+const idleToggle = document.getElementById("idleToggle");
+
+const continueButton = document.getElementById("continueButton");
+
+const finaleScreen = document.getElementById("finaleScreen");
+
+const completionScene = document.getElementById("completionScene");
+
+const participantCards = document.getElementById("participantCards");
+
+const finalePrompt =
+    document.querySelector(".finalePrompt");
+
+const finaleActions =
+    document.querySelector(".finaleActions");
+
+const finaleWheelButton = document.getElementById("finaleWheelButton");
+
+const finalQuestionButton = document.getElementById("finalQuestionButton");
+
+const finalQuestionScene = document.getElementById("finalQuestionScene");
+
+const everyoneMessage = document.getElementById("everyoneMessage");
+
+const finalQuestionBlock = document.getElementById("finalQuestionBlock");
+
+const revealAnswerButton = document.getElementById("revealAnswerButton");
+
+const presentationLinkNotice = document.getElementById("presentationLinkNotice");
+
+const audioToast =
+    document.getElementById("audioToast");
+
+const audioToastIcon =
+    document.getElementById(
+        "audioToastIcon"
+    );
+
+const audioToastText =
+    document.getElementById(
+        "audioToastText"
+    );
+
+const entryScreen =  document.getElementById("entryScreen");
+
+const enterButton =  document.getElementById("enterButton");
+
+const SIZE = 800;
+const CENTER = SIZE / 2;
+const RADIUS = 360;
+
+const TOTAL = 60;
+const SLICE = 360 / TOTAL;
+
+let idleRotation = 0;
+let spinRotation = 0;
+let spinning = false;
+let lastWinner = null;
+let transitioning = false;
+let winnerTimers = [];
+const presentationSettings = {
+  music: true,
+
+  effects: true,
+
+  voice: true,
+
+  idleRotation: true,
+};
+
+let masterAudioMuted = false;
+
+let audioToastTimer = null;
+
+let savedAudioSettings = {
+
+    music: presentationSettings.music,
+
+    effects: presentationSettings.effects,
+
+    voice: presentationSettings.voice
+
+};
+
+const audioManager = {
+  music: null,
+
+  sfx: {},
+
+  voice: null,
+
+  musicVolume: 0.25,
+
+  effectsVolume: 0.7,
+
+  voiceVolume: 1,
+};
+
+let musicFadeId = 0;
+
+let musicStopTimer = null;
+
+function loadBackgroundMusic(src) {
+  const music = new Audio(src);
+
+  music.loop = true;
+
+  music.volume = 0;
+
+  audioManager.music = music;
+}
+
+function fadeMusicTo(
+    targetVolume,
+    duration = 800
+){
+
+    const music =
+        audioManager.music;
+
+    if(!music){
+        return;
+    }
+
+    const currentFadeId =
+        ++musicFadeId;
+
+    const safeTargetVolume =
+        Math.max(
+            0,
+            Math.min(targetVolume, 1)
+        );
+
+    const safeDuration =
+        Math.max(duration, 1);
+
+    const startVolume =
+        Math.max(
+            0,
+            Math.min(music.volume, 1)
+        );
+
+    const difference =
+        safeTargetVolume - startVolume;
+
+    const startTime =
+        performance.now();
+
+
+    function animateFade(now){
+
+        if(currentFadeId !== musicFadeId){
+            return;
+        }
+
+        const elapsed =
+            Math.max(
+                0,
+                now - startTime
+            );
+
+        const progress =
+            Math.max(
+                0,
+                Math.min(
+                    elapsed / safeDuration,
+                    1
+                )
+            );
+
+        const nextVolume =
+            startVolume +
+            difference * progress;
+
+        music.volume =
+            Math.max(
+                0,
+                Math.min(nextVolume, 1)
+            );
+
+        if(progress < 1){
+
+            requestAnimationFrame(
+                animateFade
+            );
+
+        }
+
+    }
+
+    requestAnimationFrame(
+        animateFade
+    );
+
+}
+
+function startBackgroundMusic(){
+
+    if(
+        !presentationSettings.music ||
+        !audioManager.music
+    ){
+        return;
+    }
+
+    if(musicStopTimer !== null){
+
+        clearTimeout(
+            musicStopTimer
+        );
+
+        musicStopTimer = null;
+
+    }
+
+
+    audioManager.music
+        .play()
+        .then(()=>{
+
+            if(presentationSettings.music){
+
+                fadeMusicTo(
+                    audioManager.musicVolume,
+                    1200
+                );
+
+            }
+
+        })
+        .catch(()=>{});
+
+}
+
+function stopBackgroundMusic(){
+
+    if(!audioManager.music){
+        return;
+    }
+
+    if(musicStopTimer !== null){
+
+        clearTimeout(
+            musicStopTimer
+        );
+
+    }
+
+
+    fadeMusicTo(
+        0,
+        700
+    );
+
+
+    musicStopTimer =
+        setTimeout(()=>{
+
+            if(
+                audioManager.music &&
+                !presentationSettings.music
+            ){
+
+                musicFadeId++;
+
+                audioManager.music.volume = 0;
+
+                audioManager.music.pause();
+
+            }
+
+            musicStopTimer = null;
+
+        },750);
+
+}
+
+function duckBackgroundMusic(volume = 0.1, duration = 600) {
+  if (!presentationSettings.music || !audioManager.music) {
+    return;
+  }
+
+  fadeMusicTo(volume, duration);
+}
+
+function restoreBackgroundMusic() {
+  if (!presentationSettings.music || !audioManager.music) {
+    return;
+  }
+
+  fadeMusicTo(
+    audioManager.musicVolume,
+    1400
+);
+}
+
+function loadSFX(name, src){
+
+    const sound =
+        new Audio(src);
+
+    sound.preload = "auto";
+
+    audioManager.sfx[name] =
+        sound;
+
+}
+
+function playSFX(
+    name,
+    playbackRate = 1,
+    volumeScale = 1
+){
+
+    if(!presentationSettings.effects){
+        return;
+    }
+
+    const sound =
+        audioManager.sfx[name];
+
+    if(!sound){
+        return;
+    }
+
+    sound.pause();
+
+    sound.currentTime = 0;
+
+    sound.playbackRate =
+        playbackRate;
+
+    sound.volume =
+        Math.min(
+            audioManager.effectsVolume *
+            volumeScale,
+            1
+        );
+
+    sound.play().catch(()=>{});
+
+  }
+
+  function toggleMasterAudio() {
+
+    if (!masterAudioMuted) {
+
+        savedAudioSettings = {
+
+            music: presentationSettings.music,
+
+            effects: presentationSettings.effects,
+
+            voice: presentationSettings.voice
+
+        };
+
+        masterAudioMuted = true;
+
+        presentationSettings.music = false;
+        presentationSettings.effects = false;
+        presentationSettings.voice = false;
+
+        musicToggle.checked = false;
+        effectsToggle.checked = false;
+        voiceToggle.checked = false;
+
+        stopBackgroundMusic();
+
+        Object.values(
+            audioManager.sfx
+        ).forEach(sound => {
+
+            if (
+                sound &&
+                typeof sound.pause === "function"
+            ) {
+
+                sound.pause();
+                sound.currentTime = 0;
+
+            }
+
+        });
+
+        stopQuestionVoice({ restoreMusic: false });
+
+        if ("speechSynthesis" in window) {
+
+            window.speechSynthesis.cancel();
+
+        }
+
+    }
+
+    else {
+
+        masterAudioMuted = false;
+
+        presentationSettings.music =
+            savedAudioSettings.music;
+
+        presentationSettings.effects =
+            savedAudioSettings.effects;
+
+        presentationSettings.voice =
+            savedAudioSettings.voice;
+
+        musicToggle.checked =
+            presentationSettings.music;
+
+        effectsToggle.checked =
+            presentationSettings.effects;
+
+        voiceToggle.checked =
+            presentationSettings.voice;
+
+        if (presentationSettings.music) {
+
+            startBackgroundMusic();
+
+        }
+
+    }
+
+    showAudioStatusToast(
+      masterAudioMuted
+    );
+
+}
+
+function showAudioStatusToast(isMuted) {
+
+    if(
+        !audioToast ||
+        !audioToastIcon ||
+        !audioToastText
+    ){
+        return;
+    }
+
+    if(audioToastTimer !== null){
+
+        clearTimeout(
+            audioToastTimer
+        );
+
+    }
+
+
+    if(isMuted){
+
+        audioToastText.textContent =
+            "AUDIO MUTED";
+
+        audioToastIcon.innerHTML = `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path
+                    d="M11 5 6 9H2v6h4l5 4V5Z"
+                ></path>
+
+                <path
+                    d="m22 9-6 6"
+                ></path>
+
+                <path
+                    d="m16 9 6 6"
+                ></path>
+            </svg>
+        `;
+
+    }
+
+    else{
+
+        audioToastText.textContent =
+            "AUDIO UNMUTED";
+
+        audioToastIcon.innerHTML = `
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path
+                    d="M11 5 6 9H2v6h4l5 4V5Z"
+                ></path>
+
+                <path
+                    d="M15.54 8.46a5 5 0 0 1 0 7.07"
+                ></path>
+
+                <path
+                    d="M19.07 4.93a10 10 0 0 1 0 14.14"
+                ></path>
+            </svg>
+        `;
+
+    }
+
+
+    audioToast.classList.add(
+        "showAudioToast"
+    );
+
+
+    audioToastTimer =
+        setTimeout(()=>{
+
+            audioToast.classList.remove(
+                "showAudioToast"
+            );
+
+            audioToastTimer = null;
+
+        },1800);
+
+}
+
+  let wheelAudioContext = null;
+
+let lastWheelTickTime = 0;
+
+
+function playWheelTick(progress){
+
+    if(!presentationSettings.effects){
+        return;
+    }
+
+    const AudioContextClass =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+    if(!AudioContextClass){
+        return;
+    }
+
+    if(!wheelAudioContext){
+
+        wheelAudioContext =
+            new AudioContextClass();
+
+    }
+
+    if(
+        wheelAudioContext.state ===
+        "suspended"
+    ){
+
+        wheelAudioContext.resume();
+
+    }
+
+    const now =
+        wheelAudioContext.currentTime;
+
+    if(
+        now - lastWheelTickTime <
+        .028
+    ){
+        return;
+    }
+
+    lastWheelTickTime = now;
+
+    const oscillator =
+        wheelAudioContext.createOscillator();
+
+    const gain =
+        wheelAudioContext.createGain();
+
+    oscillator.type = "triangle";
+
+    oscillator.frequency.setValueAtTime(
+        760 - progress * 180,
+        now
+    );
+
+    gain.gain.setValueAtTime(
+        .0001,
+        now
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+    .13 *
+    audioManager.effectsVolume,
+    now + .002
+);
+
+gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    now + .05
+);
+
+    oscillator.connect(gain);
+
+    gain.connect(
+        wheelAudioContext.destination
+    );
+
+    oscillator.start(now);
+
+    oscillator.stop(
+        now + .06
+    );
+
+}
+
+const presenterNumbers = [3, 5, 8, 33, 45];
+const absentNumbers = [21, 30, 38];
+
+const forbiddenNumbers = [...presenterNumbers, ...absentNumbers];
+
+const askedNumbers = [];
+
+const sliceData = [];
+
+const students = {
+  1: "Ma Hsu Lae Lae Hnin",
+  2: "Mg Kaung Khant Ko Ko",
+  4: "Mg Khant Thuta",
+  6: "Ma Shoon Lae Lin Thu",
+  7: "Ma Kyoe Kyar",
+  9: "Mg Aye Min Zaw",
+  10: "Mg Bhone Pyae Khaing",
+  11: "Mg Khant Nadi Hein",
+  12: "Ma April Ye Naing",
+  13: "Mg Hlaing Win Htun",
+  14: "Mg Min Thwin Hmu",
+  15: "Ma Chaw Su Su Hlaing",
+  16: "Ma Ei Shwe Sin Chaw",
+  17: "Mg Myat Khant Ko",
+  18: "Ma Khin Nwe Nwe Htun",
+  19: "Ma A Me Me Khant",
+  20: "Ma Aye Thandar Aung",
+  22: "Mg La Min Thant",
+  23: "Mg Han Thar San",
+  24: "Ma Hsu Myat Nwe",
+  25: "Mg Khant Thurein Htet",
+  26: "Mg Htet Kaung Myint Myat",
+  27: "Ma Phoo Myat Naychi",
+  28: "Ma Thae Nandar Su",
+  29: "Ma Akari Khin",
+  31: "Mg Hein Htet Soe",
+  32: "Mg Kaung Set Hein",
+  34: "Mg Aung Hein Khant",
+  35: "Mg Han Zaw",
+  36: "Mg Lin Lett Hein",
+  37: "Mg Thet Htoo Nyi",
+  39: "Ma Ei Ei Chit Min",
+  40: "Mg Swel Sone Htoo Maw",
+  41: "Ma Aye Nyein Zun",
+  42: "Ma Ingyin Mhwe",
+  43: "Mg Khant Naing",
+  44: "Ma Toe Pyae Paing",
+  46: "Ma Aye Thaddhar",
+  47: "Ma Kyal Sin Thoon",
+  48: "Mg Loon Khaung",
+  49: "Mg Shin Thant Min",
+  50: "Mg Arkar Kyaw",
+  51: "Ma Hnin Hsu Htoo",
+  52: "Mg Khant Zin Hein",
+  53: "Ma Yin Sandi Tint",
+  54: "Mg Hein Chan Zaw",
+  55: "Ma Aye Yadanar Oo",
+  56: "Ma May Thaw Tar Oo",
+  57: "Mg Min Khant Yan Naing",
+  58: "Ma Phyo Thiri Kyaw",
+  59: "Mg Arkar Min Maung",
+  60: "Ma Hnin Akary Tun",
+};
+
+const questions = [
+  "Should students be allowed to use AI freely for university assignments if AI will also be used in their future workplaces?",
+
+  "If an employee/student secretly uses AI to perform most of their work but still gets excellent results, is that dishonest or efficient?",
+
+  "If everyone uses AI during job interviews or exams, how should we measure a person’s real ability?",
+
+  "Do you think people will become more creative because AI handles routine work, or less creative because AI can generate ideas for them?",
+
+  "What should we worry more about: AI becoming too intelligent, or humans becoming too dependent on it?"
+];
+
+const questionAudioMap = new Map([
+  [questions[0], "audio/voice/question-1.mp3"],
+  [questions[1], "audio/voice/question-2.mp3"],
+  [questions[2], "audio/voice/question-3.mp3"],
+  [questions[3], "audio/voice/question-4.mp3"],
+  [questions[4], "audio/voice/question-5.mp3"],
+]);
+
+let usedQuestions = [];
+
+let questionCount = 0;
+
+let revealTimers = [];
+
+let isTyping = false;
+
+let currentQuestion = "";
+
+let questionWordsFinished = false;
+let questionVoiceFinished = true;
+let questionVoiceToken = 0;
+
+let sessionComplete = false;
+
+let finaleControlsRevealed = false;
+
+let finaleTimers = [];
+
+const wheelGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+wheelGroup.setAttribute("id", "wheelGroup");
+
+svg.appendChild(wheelGroup);
+
+for (let i = 0; i < TOTAL; i++) {
+  const number = i + 1;
+
+  const start = i * SLICE - 90;
+  const end = (i + 1) * SLICE - 90;
+  const middle = (start + end) / 2;
+
+  sliceData[number] = middle;
+
+  const x1 = CENTER + RADIUS * Math.cos((start * Math.PI) / 180);
+  const y1 = CENTER + RADIUS * Math.sin((start * Math.PI) / 180);
+
+  const x2 = CENTER + RADIUS * Math.cos((end * Math.PI) / 180);
+  const y2 = CENTER + RADIUS * Math.sin((end * Math.PI) / 180);
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+  path.setAttribute("id", `slice-${number}`);
+
+  path.setAttribute(
+    "d",
+    `
+        M ${CENTER} ${CENTER}
+        L ${x1} ${y1}
+        A ${RADIUS} ${RADIUS}
+        0 0 1
+        ${x2} ${y2}
+        Z
+        `,
+  );
+
+  let color;
+
+  if (presenterNumbers.includes(number)) color = "#FFD700";
+  else if (absentNumbers.includes(number)) color = "#E63946";
+  else color = i % 2 === 0 ? "#2F56D3" : "#5941C9";
+  path.setAttribute("fill", color);
+  path.setAttribute("stroke", "white");
+  path.setAttribute("stroke-width", "1");
+
+  wheelGroup.appendChild(path);
+
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+
+  text.setAttribute("id", `text-${number}`);
+
+  const textRadius = 300;
+
+  const tx = CENTER + textRadius * Math.cos((middle * Math.PI) / 180);
+
+  const ty = CENTER + textRadius * Math.sin((middle * Math.PI) / 180);
+
+  text.setAttribute("x", tx);
+  text.setAttribute("y", ty);
+
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("dominant-baseline", "middle");
+  text.setAttribute("font-size", "18");
+  text.setAttribute("font-weight", "700");
+
+  if (presenterNumbers.includes(number)) text.setAttribute("fill", "#111");
+  else text.setAttribute("fill", "white");
+
+  text.setAttribute("transform", `rotate(${middle + 90}, ${tx}, ${ty})`);
+
+  text.textContent = number;
+
+  wheelGroup.appendChild(text);
+}
+
+function updateWheel() {
+  const displayRotation = idleRotation + spinRotation;
+
+  wheelGroup.setAttribute(
+    "transform",
+    `rotate(${displayRotation} ${CENTER} ${CENTER})`,
+  );
+}
+
+function idleSpin() {
+  if (!spinning && presentationSettings.idleRotation) {
+    idleRotation -= 0.08;
+
+    if (idleRotation >= 360) idleRotation -= 360;
+
+    updateWheel();
+  }
+
+  requestAnimationFrame(idleSpin);
+}
+
+idleSpin();
+
+function getAvailableNumbers() {
+  return Array.from({ length: TOTAL }, (_, i) => i + 1).filter((number) => {
+    return !forbiddenNumbers.includes(number) && !askedNumbers.includes(number);
+  });
+}
+
+function getRandomQuestion() {
+  if (usedQuestions.length === questions.length) {
+    usedQuestions = [];
+  }
+
+  let available = questions.filter((q) => !usedQuestions.includes(q));
+
+  let selected = available[Math.floor(Math.random() * available.length)];
+
+  usedQuestions.push(selected);
+
+  return selected;
+}
+
+function maybeShowContinueButton() {
+  if (
+    questionWordsFinished &&
+    questionVoiceFinished &&
+    !questionScreen.classList.contains("hiddenQuestion")
+  ) {
+    continueButton.classList.add("showContinue");
+  }
+}
+
+function stopQuestionVoice({ restoreMusic = true } = {}) {
+  questionVoiceToken++;
+
+  const voice = audioManager.voice;
+
+  if (voice && typeof voice.pause === "function") {
+    voice.onended = null;
+    voice.onerror = null;
+    voice.pause();
+    voice.currentTime = 0;
+  }
+
+  audioManager.voice = null;
+  questionVoiceFinished = true;
+
+  if (
+    restoreMusic &&
+    presentationSettings.music &&
+    !masterAudioMuted
+  ) {
+    restoreBackgroundMusic();
+  }
+
+  maybeShowContinueButton();
+}
+
+function playQuestionVoice(question) {
+  const src = questionAudioMap.get(question);
+
+  if (
+    !src ||
+    !presentationSettings.voice ||
+    masterAudioMuted
+  ) {
+    questionVoiceFinished = true;
+    maybeShowContinueButton();
+    return;
+  }
+
+  stopQuestionVoice({ restoreMusic: false });
+  questionVoiceFinished = false;
+
+  const token = ++questionVoiceToken;
+  const voice = new Audio(src);
+  let settled = false;
+
+  voice.preload = "auto";
+  voice.volume = audioManager.voiceVolume;
+  audioManager.voice = voice;
+
+  const finishVoice = () => {
+    if (settled || token !== questionVoiceToken) {
+      return;
+    }
+
+    settled = true;
+
+    if (audioManager.voice === voice) {
+      audioManager.voice = null;
+    }
+
+    questionVoiceFinished = true;
+
+    if (
+      presentationSettings.music &&
+      !masterAudioMuted
+    ) {
+      restoreBackgroundMusic();
+    }
+
+    maybeShowContinueButton();
+  };
+
+  voice.onended = finishVoice;
+  voice.onerror = finishVoice;
+
+  voice.play().catch(finishVoice);
+}
+
+function revealQuestionWords(element, text) {
+  revealTimers.forEach((timer) => clearTimeout(timer));
+  revealTimers = [];
+
+  isTyping = true;
+  questionWordsFinished = false;
+  element.innerHTML = "";
+
+  const words = text.split(" ");
+
+  words.forEach((word, index) => {
+    const wordSpan = document.createElement("span");
+
+    wordSpan.className = "questionWord";
+
+    wordSpan.textContent = word;
+
+    element.appendChild(wordSpan);
+
+    const timer = setTimeout(() => {
+      wordSpan.classList.add("showWord");
+
+      if (index === words.length - 1) {
+        setTimeout(() => {
+          isTyping = false;
+          questionWordsFinished = true;
+          maybeShowContinueButton();
+        }, 2000);
+      }
+    }, index * 140);
+
+    revealTimers.push(timer);
+  });
+}
+
+function prepareQuestionScene() {
+
+    if (questionCount >= questions.length) {
+        return;
+    }
+
+    questionCount++;
+
+    currentQuestion =
+        getRandomQuestion();
+
+    questionWordsFinished = false;
+    questionVoiceFinished = !presentationSettings.voice;
+
+    questionTitle.firstChild.nodeValue =
+        "QUESTION ";
+
+    questionNumber.textContent =
+        " " + questionCount;
+
+    continueButton.textContent =
+        "CONTINUE";
+
+    updateConsoleStatus();
+
+    questionText.innerHTML = "";
+
+    questionScreen.classList.remove(
+        "hiddenQuestion"
+    );
+
+    spotlight.style.opacity = "0";
+
+    questionTitle.classList.remove(
+        "showQuestionTitle",
+        "hideQuestionTitle",
+        "questionLand",
+        "drawLine"
+    );
+
+    questionTitle.style.opacity = "";
+    questionTitle.style.visibility = "";
+    questionTitle.style.transform = "";
+
+    continueButton.classList.remove(
+        "showContinue"
+    );
+
+    continueButton.disabled = false;
+
+}
+
+function revealQuestionScene() {
+  setTimeout(() => {
+    spotlight.style.opacity = "1";
+  }, 300);
+
+  setTimeout(() => {
+    questionTitle.classList.add("showQuestionTitle");
+
+    setTimeout(() => {
+      questionTitle.classList.add("drawLine");
+    }, 700);
+  }, 1100);
+
+  setTimeout(() => {
+    if (
+      presentationSettings.voice &&
+      !masterAudioMuted &&
+      questionAudioMap.has(currentQuestion)
+    ) {
+      duckBackgroundMusic(0, 350);
+    }
+  }, 2050);
+
+  setTimeout(() => {
+    questionText.style.opacity = "1";
+
+    questionText.style.transform = "translateY(0)";
+
+    revealQuestionWords(questionText, currentQuestion);
+    playQuestionVoice(currentQuestion);
+  }, 2500);
+}
+
+function clearFinaleTimers() {
+  finaleTimers.forEach((timer) => {
+    clearTimeout(timer);
+  });
+
+  finaleTimers = [];
+}
+
+function scheduleFinale(callback, delay) {
+  const timer = setTimeout(callback, delay);
+
+  finaleTimers.push(timer);
+
+  return timer;
+}
+
+function populateParticipantCards() {
+  participantCards.innerHTML = "";
+
+  askedNumbers.slice(0, questions.length).forEach((number, index) => {
+    const card = document.createElement("article");
+
+    card.className = "participantCard";
+
+    card.style.setProperty(
+      "--participant-delay",
+      `${5.8 + index * 0.55}s`,
+    );
+
+    const questionLabel = document.createElement("span");
+    questionLabel.className = "participantQuestion";
+    questionLabel.textContent = `QUESTION ${index + 1}`;
+
+    const participantNumber = document.createElement("strong");
+    participantNumber.className = "participantNumber";
+    participantNumber.textContent =
+    `2025-MIIT-ECE-${String(number).padStart(3, "0")}`;
+
+    const participantName = document.createElement("span");
+    participantName.className = "participantName";
+    participantName.textContent = students[number] || "Audience Member";
+    participantName.title = participantName.textContent;
+
+    card.append(
+      questionLabel,
+      participantNumber,
+      participantName,
+    );
+
+    participantCards.appendChild(card);
+  });
+}
+
+function resetFinalQuestionScene() {
+  everyoneMessage.classList.remove(
+    "showEveryoneMessage",
+    "leaveEveryoneMessage",
+  );
+
+  finalQuestionBlock.classList.remove("showFinalQuestion");
+
+  revealAnswerButton.classList.remove(
+    "showRevealButton",
+    "presentationLinkMissing",
+  );
+
+  revealAnswerButton.disabled = false;
+
+  presentationLinkNotice.textContent = "";
+  presentationLinkNotice.classList.remove("showPresentationNotice");
+}
+
+function prepareFinaleSummary() {
+  populateParticipantCards();
+  resetFinalQuestionScene();
+
+  finaleControlsRevealed = false;
+
+finalePrompt.classList.remove(
+    "showFinalePrompt"
+);
+
+finaleActions.classList.remove(
+    "showFinaleActions"
+);
+
+  finaleScreen.classList.remove("finaleHidden");
+  finaleScreen.setAttribute("aria-hidden", "false");
+
+  document.body.classList.add("finaleActive");
+
+  finalQuestionScene.classList.remove("finaleSceneVisible");
+  finalQuestionScene.classList.add("finaleSceneHidden");
+
+  completionScene.classList.remove("finaleSceneVisible");
+  completionScene.classList.add("finaleSceneHidden");
+
+  finaleWheelButton.disabled = true;
+  finalQuestionButton.disabled = true;
+}
+
+function revealFinaleSummary() {
+  completionScene.classList.remove("finaleSceneVisible");
+  completionScene.classList.add("finaleSceneHidden");
+
+  void completionScene.offsetWidth;
+
+  completionScene.classList.remove("finaleSceneHidden");
+  completionScene.classList.add("finaleSceneVisible");
+}
+
+function revealFinaleControls() {
+
+    if (
+        finaleControlsRevealed ||
+        !completionScene.classList.contains(
+            "finaleSceneVisible"
+        )
+    ) {
+        return;
+    }
+
+    finaleControlsRevealed = true;
+
+    finalePrompt.classList.add(
+        "showFinalePrompt"
+    );
+
+    scheduleFinale(() => {
+
+        finaleActions.classList.add(
+            "showFinaleActions"
+        );
+
+        finaleWheelButton.disabled = false;
+        finalQuestionButton.disabled = false;
+
+    }, 1200);
+
+}
+
+function resetQuestionSceneAfterExit() {
+  questionScreen.classList.add("hiddenQuestion");
+
+  continueButton.classList.remove(
+    "showContinue",
+    "exitUp",
+    "continueDisabled",
+  );
+
+  continueButton.disabled = false;
+  continueButton.style.opacity = "";
+  continueButton.style.transform = "";
+
+  questionText.classList.remove("exitUp");
+  questionText.innerHTML = "";
+  questionText.style.opacity = "0";
+  questionText.style.transform = "translateY(40px)";
+
+  questionTitle.classList.remove(
+    "showQuestionTitle",
+    "hideQuestionTitle",
+    "questionLand",
+    "drawLine",
+    "exitUp",
+  );
+
+  questionTitle.style.opacity = "";
+  questionTitle.style.visibility = "";
+  questionTitle.style.transform = "";
+}
+
+function showCompletionFinale() {
+  if (transitioning || sessionComplete) {
+    return;
+  }
+
+  transitioning = true;
+  sessionComplete = true;
+
+  clearFinaleTimers();
+
+  continueButton.disabled = true;
+  continueButton.classList.add("exitUp");
+
+  scheduleFinale(() => {
+    questionText.classList.add("exitUp");
+  }, 250);
+
+  scheduleFinale(() => {
+    questionTitle.classList.add("exitUp");
+  }, 500);
+
+  spotlight.style.opacity = "0";
+
+  scheduleFinale(() => {
+    duckBackgroundMusic(0.13, 1200);
+
+    playSFX("curtain", 1.54, 0.55);
+    curtainContainer.classList.add("close");
+  }, 1250);
+
+  scheduleFinale(() => {
+    resetQuestionSceneAfterExit();
+
+    spinButton.textContent = "FINAL";
+    spinButton.disabled = false;
+    spinButton.setAttribute("aria-label", "Return to the ending");
+
+    prepareFinaleSummary();
+  }, 3400);
+
+  scheduleFinale(() => {
+    playSFX("curtain", 1.54, 0.55);
+    curtainContainer.classList.remove("close");
+  }, 3900);
+
+  scheduleFinale(() => {
+    revealFinaleSummary();
+  }, 6500);
+
+  scheduleFinale(() => {
+    transitioning = false;
+  }, 15600);
+}
+
+function returnFromFinaleToWheel() {
+  if (transitioning) {
+    return;
+  }
+
+  transitioning = true;
+  clearFinaleTimers();
+
+  finaleWheelButton.disabled = true;
+  finalQuestionButton.disabled = true;
+
+  playSFX("curtain", 1.54, 0.55);
+  curtainContainer.classList.add("close");
+
+  scheduleFinale(() => {
+    completionScene.classList.remove("finaleSceneVisible");
+    completionScene.classList.add("finaleSceneHidden");
+
+    finaleScreen.classList.add("finaleHidden");
+    finaleScreen.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("finaleActive");
+
+    pointer.style.opacity = "1";
+    spinButton.disabled = false;
+    spinButton.classList.add("glowButton");
+  }, 2200);
+
+  scheduleFinale(() => {
+    playSFX("curtain", 1.54, 0.55);
+    curtainContainer.classList.remove("close");
+    restoreBackgroundMusic();
+  }, 3000);
+
+  scheduleFinale(() => {
+    transitioning = false;
+  }, 5200);
+}
+
+function openFinaleFromWheel() {
+  if (transitioning || !sessionComplete) {
+    return;
+  }
+
+  transitioning = true;
+  clearFinaleTimers();
+
+  playSFX("curtain", 1.54, 0.55);
+  curtainContainer.classList.add("close");
+
+  scheduleFinale(() => {
+    prepareFinaleSummary();
+  }, 2200);
+
+  scheduleFinale(() => {
+    playSFX("curtain", 1.54, 0.55);
+    curtainContainer.classList.remove("close");
+  }, 3000);
+
+  scheduleFinale(() => {
+    revealFinaleSummary();
+  }, 5600);
+
+  scheduleFinale(() => {
+    transitioning = false;
+  }, 14600);
+}
+
+function startFinalQuestionSequence() {
+  if (transitioning) {
+    return;
+  }
+
+  transitioning = true;
+  clearFinaleTimers();
+
+  finaleWheelButton.disabled = true;
+  finalQuestionButton.disabled = true;
+
+  playSFX("curtain", 1.54, 0.55);
+  curtainContainer.classList.add("close");
+
+  scheduleFinale(() => {
+    fadeMusicTo(0, 1200);
+
+    completionScene.classList.remove("finaleSceneVisible");
+    completionScene.classList.add("finaleSceneHidden");
+
+    resetFinalQuestionScene();
+
+    finalQuestionScene.classList.remove("finaleSceneHidden");
+    finalQuestionScene.classList.add("finaleSceneVisible");
+  }, 2200);
+
+  scheduleFinale(() => {
+    playSFX("curtain", 1.54, 0.55);
+    curtainContainer.classList.remove("close");
+  }, 3000);
+
+  scheduleFinale(() => {
+    everyoneMessage.classList.add("showEveryoneMessage");
+  }, 5800);
+
+  scheduleFinale(() => {
+    everyoneMessage.classList.remove("showEveryoneMessage");
+    everyoneMessage.classList.add("leaveEveryoneMessage");
+  }, 9950);
+
+  scheduleFinale(() => {
+    finalQuestionBlock.classList.add("showFinalQuestion");
+  }, 11850);
+
+  scheduleFinale(() => {
+    revealAnswerButton.classList.add("showRevealButton");
+    transitioning = false;
+  }, 16900);
+}
+
+function revealPresentation() {
+  if (transitioning) {
+    return;
+  }
+
+  const presentationUrl =
+    revealAnswerButton.dataset.presentationUrl.trim();
+
+  if (!presentationUrl) {
+    presentationLinkNotice.textContent =
+      "Presentation link will be connected after the PowerPoint is ready.";
+
+    presentationLinkNotice.classList.add("showPresentationNotice");
+
+    revealAnswerButton.classList.remove("presentationLinkMissing");
+    void revealAnswerButton.offsetWidth;
+    revealAnswerButton.classList.add("presentationLinkMissing");
+
+    return;
+  }
+
+  transitioning = true;
+  revealAnswerButton.disabled = true;
+
+  playSFX("curtain", 1.54, 0.55);
+  curtainContainer.classList.add("close");
+
+  scheduleFinale(() => {
+    window.location.href = presentationUrl;
+  }, 2200);
+}
+
+const fixedAudienceSequence = [
+    35,
+    13,
+    31,
+    54
+];
+
+const specialRandomPool = [
+    6,
+    17,
+    23,
+    26,
+    32,
+    36,
+    41,
+    42,
+    44,
+    50,
+    52,
+    57,
+    58
+];
+
+function chooseAudience() {
+
+    const available = getAvailableNumbers();
+
+    if (available.length === 0) {
+
+        alert("Everyone has been selected!");
+
+        return null;
+
+    }
+
+    const selectionIndex = askedNumbers.length;
+
+    let chosen;
+
+    if (selectionIndex < fixedAudienceSequence.length) {
+
+        const fixedNumber =
+            fixedAudienceSequence[selectionIndex];
+
+        if (available.includes(fixedNumber)) {
+
+            chosen = fixedNumber;
+
+        } else {
+
+            chosen =
+                available[
+                    Math.floor(
+                        Math.random() * available.length
+                    )
+                ];
+
+        }
+
+    }
+
+    else {
+
+        const availableSpecialNumbers =
+            specialRandomPool.filter(number =>
+                available.includes(number)
+            );
+
+        if (availableSpecialNumbers.length > 0) {
+
+            chosen =
+                availableSpecialNumbers[
+                    Math.floor(
+                        Math.random() *
+                        availableSpecialNumbers.length
+                    )
+                ];
+
+        }
+
+        else {
+
+            chosen =
+                available[
+                    Math.floor(
+                        Math.random() * available.length
+                    )
+                ];
+
+        }
+
+    }
+
+    askedNumbers.push(chosen);
+
+    updateConsoleStatus();
+
+    return chosen;
+
+}
+
+function launchConfetti() {
+  const colors = [
+    "#FFD700",
+    "#FF4D6D",
+    "#4CAF50",
+    "#00BFFF",
+    "#FFFFFF",
+    "#FF9800",
+  ];
+
+  for (let i = 0; i < 40; i++) {
+    const piece = document.createElement("div");
+
+    piece.className = "confetti";
+
+    piece.style.left = Math.random() * window.innerWidth + "px";
+
+    piece.style.top = "-20px";
+
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    piece.style.animationDelay = Math.random() * 0.4 + "s";
+
+    confettiContainer.appendChild(piece);
+
+    setTimeout(() => {
+      piece.remove();
+    }, 3000);
+  }
+}
+
+function launchBalloons() {
+  const colors = ["#ff4d6d", "#ffd93d", "#6bcB77", "#4d96ff", "#b983ff"];
+
+  for (let i = 0; i < 18; i++) {
+    const balloon = document.createElement("div");
+
+    balloon.className = "balloon";
+
+    balloon.style.left = Math.random() * 100 + "vw";
+
+    balloon.style.background =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    balloon.style.animationDelay = Math.random() * 0.8 + "s";
+
+    balloonContainer.appendChild(balloon);
+
+    setTimeout(() => {
+      balloon.remove();
+    }, 5500);
+  }
+}
+
+function launchSparkles() {
+  for (let i = 0; i < 15; i++) {
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    sparkle.style.left = Math.random() * 100 + "%";
+
+    sparkle.style.top = Math.random() * 100 + "%";
+
+    sparkle.style.animationDelay = Math.random() * 0.5 + "s";
+
+    popupEffects.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1600);
+  }
+}
+
+function showWinner(number) {
+
+      if (questionCount >= questions.length) {
+
+        tabPrompt.innerHTML =
+            'PRESS <span id="tabKey">TAB</span> TO CONTINUE';
+
+    } else {
+
+        tabPrompt.innerHTML =
+            'PRESS <span id="tabKey">TAB</span> TO START QUESTION';
+
+    }
+  pointer.style.opacity = "0";
+
+  winnerNumber.textContent = number;
+
+  const selectedName = students[number] || "Unknown";
+
+  winnerName.textContent = selectedName;
+
+  idPrefix.style.opacity = "0";
+
+  winnerName.classList.remove("showName");
+  winnerName.classList.add("hiddenInfo");
+
+  idPrefix.textContent = "";
+
+  const selectedSlice = document.getElementById(`slice-${number}`);
+
+  selectedSlice.setAttribute("fill", "#00E5FF");
+
+  selectedSlice.setAttribute("stroke", "#B2F7FF");
+
+  selectedSlice.setAttribute("stroke-width", "4");
+
+  selectedSlice.classList.remove("winnerPulse");
+
+  void selectedSlice.getBBox();
+
+  selectedSlice.classList.add("winnerPulse");
+
+  winnerNumber.style.transition = "none";
+  winnerNumber.style.left = "50%";
+  winnerNumber.style.fontSize = "55px";
+
+  const popupTimer = setTimeout(() => {
+    winnerPopup.classList.remove("hidden");
+
+    restoreBackgroundMusic();
+
+    const identityTimer = setTimeout(() => {
+      animateIdentity(number);
+    }, 500);
+
+    winnerTimers.push(identityTimer);
+  }, 900);
+
+  winnerTimers.push(popupTimer);
+
+  const selectedText = document.getElementById(`text-${number}`);
+
+  if (selectedText) {
+    selectedText.setAttribute("fill", "#DDDDDD");
+  }
+
+  lastWinner = number;
+}
+
+function clearWinnerTimers() {
+  winnerTimers.forEach((timer) => {
+    clearTimeout(timer);
+  });
+
+  winnerTimers = [];
+}
+
+function revealWinnerName() {
+  winnerName.classList.remove("hiddenInfo");
+
+  requestAnimationFrame(() => {
+    winnerName.classList.add("showName");
+  });
+}
+
+function spinToNumber(number) {
+  spinning = true;
+
+  spinButton.disabled = true;
+
+  spinButton.classList.remove("glowButton");
+
+  duckBackgroundMusic(
+    0,
+    700
+);
+
+  const targetAngle = sliceData[number];
+
+  const startRotation = idleRotation + spinRotation;
+
+  let finalRotation = -(targetAngle + 90);
+
+  while (finalRotation <= startRotation) {
+    finalRotation += 360;
+  }
+
+  finalRotation += 360 * 8;
+
+  const duration = 10000;
+
+  const startTime = performance.now();
+
+let lastTickSlice =
+    Math.floor(
+        startRotation / SLICE
+    );
+
+function animate(now) {
+    const elapsed = now - startTime;
+
+    const t = Math.min(elapsed / duration, 1);
+
+    let ease;
+
+    if (t < 0.2) {
+      ease = 0.5 * Math.pow(t / 0.2, 2) * 0.2;
+    } else {
+      const slow = (t - 0.2) / 0.8;
+
+      ease = 0.2 + (1 - Math.pow(1 - slow, 3)) * 0.8;
+    }
+
+    spinRotation =
+      startRotation - idleRotation + (finalRotation - startRotation) * ease;
+
+    updateWheel();
+
+const currentWheelRotation =
+    idleRotation + spinRotation;
+
+const currentTickSlice =
+    Math.floor(
+        currentWheelRotation / SLICE
+    );
+
+if(
+    currentTickSlice !==
+    lastTickSlice
+){
+
+    playWheelTick(t);
+
+    lastTickSlice =
+        currentTickSlice;
+
+}
+
+if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      spinRotation %= 360;
+
+      updateWheel();
+
+      spinning = false;
+
+      spinButton.disabled = false;
+
+      setTimeout(() => {
+        showWinner(number);
+      }, 350);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+spinButton.addEventListener("click", () => {
+  if (spinning) return;
+
+  if (sessionComplete) {
+    openFinaleFromWheel();
+
+    return;
+  }
+
+  const selected = chooseAudience();
+
+  if (selected === null) return;
+
+  spinToNumber(selected);
+});
+
+closePopup.addEventListener("click", () => {
+  winnerPopup.classList.add("hidden");
+
+  idPrefix.style.opacity = "0";
+
+  winnerName.classList.add("hiddenInfo");
+
+  const selectedSlice = document.getElementById(`slice-${lastWinner}`);
+
+  if (selectedSlice) {
+    selectedSlice.setAttribute("fill", "#777");
+
+    selectedSlice.setAttribute("stroke", "rgba(255,255,255,0.35)");
+
+    selectedSlice.setAttribute("stroke-width", "1");
+  }
+
+  pointer.style.opacity = "1";
+
+  spinButton.classList.add("glowButton");
+
+  readyPrompt.classList.remove("showPrompt");
+
+  tabPrompt.classList.remove("showPrompt");
+
+  readyPrompt.classList.remove("showReady");
+});
+
+const header = document.querySelector("header");
+
+const wheel = document.querySelector(".wheel-wrapper");
+
+const subtitle = document.getElementById("subtitle");
+
+const subtitleText = "Choose an Audience Member to ask a Question.";
+
+function typeSubtitle() {
+  subtitle.textContent = "";
+
+  let index = 0;
+
+  const typing = setInterval(() => {
+    subtitle.textContent += subtitleText[index];
+
+    index++;
+
+    if (index >= subtitleText.length) {
+      clearInterval(typing);
+    }
+  }, 140);
+}
+
+function startIntroSequence() {
+  setTimeout(() => {
+    header.classList.add("showHeader");
+  }, 700);
+
+  setTimeout(() => {
+    wheel.classList.add("showWheel");
+  }, 1700);
+
+  setTimeout(() => {
+    pointer.classList.add("showPointer");
+  }, 3300);
+
+  setTimeout(() => {
+    typeSubtitle();
+  }, 4200);
+
+  setTimeout(() => {
+    spinButton.classList.add("glowButton");
+  }, 6200);
+}
+
+enterButton.addEventListener(
+    "click",
+    () => {
+
+        if(enterButton.disabled){
+            return;
+        }
+
+        enterButton.disabled = true;
+
+        enterButton.classList.add(
+            "enterActivated"
+        );
+
+        if(presentationSettings.music){
+
+            startBackgroundMusic();
+
+        }
+
+        playSFX(
+            "curtain",
+            1.1,
+            .55
+        );
+
+        curtainContainer.classList.add(
+            "introCurtain",
+            "close"
+        );
+
+        /*
+        The curtain is fully closed.
+        Hide the credits behind it.
+        */
+
+        setTimeout(()=>{
+
+            entryScreen.style.display =
+                "none";
+
+        },2900);
+
+        setTimeout(()=>{
+
+            playSFX(
+                "curtain",
+                1.1,
+                .55
+            );
+
+            curtainContainer.classList.remove(
+                "close"
+            );
+
+        },4100);
+
+        setTimeout(()=>{
+
+            curtainContainer.classList.remove(
+                "introCurtain"
+            );
+
+        },7000);
+
+        setTimeout(()=>{
+
+      restoreBackgroundMusic();
+
+      startIntroSequence();
+
+  },7800);
+
+    }
+);
+
+function animateIdentity(number) {
+  winnerNumber.textContent = number;
+
+  idPrefix.textContent = number < 10 ? "2025-MIIT-ECE-00" : "2025-MIIT-ECE-0";
+
+  winnerNumber.style.transition = "none";
+
+  winnerNumber.style.left = "50%";
+
+  winnerNumber.style.fontSize = "70px";
+
+  winnerNumber.style.fontWeight = "800";
+
+  requestAnimationFrame(() => {
+    winnerNumber.style.transition = "left .8s ease, font-size .8s ease";
+  });
+
+  idPrefix.style.opacity = "0";
+
+  setTimeout(() => {
+    winnerNumber.style.left = "73.5%";
+
+    winnerNumber.style.fontSize = "28px";
+
+    winnerNumber.style.opacity = "0.75";
+
+    winnerNumber.style.fontWeight = "700";
+
+    idPrefix.style.opacity = "1";
+  }, 900);
+
+  setTimeout(() => {
+    winnerNumber.style.fontWeight = "600";
+
+    winnerNumber.style.opacity = "1";
+  }, 2800);
+
+  setTimeout(() => {
+    winnerName.classList.remove("hiddenInfo");
+
+    requestAnimationFrame(() => {
+      winnerName.classList.add("showName");
+    });
+
+    typeWinnerName(students[number] || "Unknown");
+  }, 3300);
+}
+
+function typeWinnerName(name) {
+  winnerName.textContent = "";
+
+  let index = 0;
+
+  function type() {
+    if (index < name.length) {
+      winnerName.textContent += name[index];
+
+      index++;
+
+      setTimeout(type, 170);
+    } else {
+      setTimeout(() => {
+        readyPrompt.classList.add("showPrompt");
+        readyPrompt.classList.add("showReady");
+      }, 1200);
+
+      setTimeout(() => {
+        tabPrompt.classList.add("showPrompt");
+      }, 3000);
+    }
+  }
+
+  type();
+}
+
+function resetWinnerAfterQuestion() {
+  winnerPopup.classList.add("hidden");
+
+  idPrefix.style.opacity = "0";
+
+  winnerName.classList.remove("showName");
+
+  winnerName.classList.add("hiddenInfo");
+
+  readyPrompt.classList.remove("showPrompt", "showReady");
+
+  tabPrompt.classList.remove("showPrompt");
+
+  if (lastWinner !== null) {
+    const selectedSlice = document.getElementById(`slice-${lastWinner}`);
+
+    const selectedText = document.getElementById(`text-${lastWinner}`);
+
+    if (selectedSlice) {
+      selectedSlice.setAttribute("fill", "#777");
+
+      selectedSlice.setAttribute("stroke", "rgba(255,255,255,0.35)");
+
+      selectedSlice.setAttribute("stroke-width", "1");
+    }
+
+    if (selectedText) {
+      selectedText.setAttribute("fill", "#DDDDDD");
+    }
+  }
+}
+
+function openPresenterConsole(){
+
+    presenterConsole.classList.remove(
+        "consoleClosed"
+    );
+
+    consoleOverlay.classList.remove(
+        "consoleHidden"
+    );
+
+}
+
+function closePresenterConsole(){
+
+    presenterConsole.classList.add(
+        "consoleClosed"
+    );
+
+    consoleOverlay.classList.add(
+        "consoleHidden"
+    );
+
+}
+
+function togglePresenterConsole() {
+  const consoleIsClosed = presenterConsole.classList.contains("consoleClosed");
+
+  if (consoleIsClosed) {
+    openPresenterConsole();
+  } else {
+    closePresenterConsole();
+  }
+}
+
+function updateConsoleStatus() {
+
+    const completedQuestions =
+        Math.min(
+            questionCount,
+            questions.length
+        );
+
+    consoleRound.textContent =
+        `${completedQuestions} / ${questions.length}`;
+
+    consoleAudienceLeft.textContent =
+        getAvailableNumbers().length;
+
+}
+
+consoleButton.addEventListener("click", togglePresenterConsole);
+
+closeConsole.addEventListener("click", closePresenterConsole);
+
+consoleOverlay.addEventListener("click", closePresenterConsole);
+
+musicToggle.addEventListener(
+    "change",
+    () => {
+
+        masterAudioMuted = false;
+
+        presentationSettings.music =
+            musicToggle.checked;
+
+        if(
+            presentationSettings.music
+        ){
+
+            startBackgroundMusic();
+
+        }
+
+        else{
+
+            stopBackgroundMusic();
+
+        }
+
+    }
+);
+
+effectsToggle.addEventListener(
+    "change",
+    () => {
+
+        masterAudioMuted = false;
+
+        presentationSettings.effects =
+            effectsToggle.checked;
+
+    }
+);
+
+voiceToggle.addEventListener(
+    "change",
+    () => {
+
+        masterAudioMuted = false;
+
+        presentationSettings.voice =
+            voiceToggle.checked;
+
+        if (!presentationSettings.voice) {
+            stopQuestionVoice({ restoreMusic: true });
+        }
+
+    }
+);
+
+idleToggle.addEventListener("change", () => {
+  presentationSettings.idleRotation = idleToggle.checked;
+});
+
+function startQuestionTransition() {
+  if (transitioning) return;
+
+  if (
+    winnerPopup.classList.contains("hidden") ||
+    !tabPrompt.classList.contains("showPrompt")
+  ) {
+    return;
+  }
+
+  transitioning = true;
+
+playSFX(
+    "curtain",
+    1.54,
+    .55
+);
+
+curtainContainer.classList.add(
+    "close"
+);
+
+  setTimeout(() => {
+    resetWinnerAfterQuestion();
+
+    prepareQuestionScene();
+  }, 2200);
+
+  setTimeout(()=>{
+
+    playSFX(
+        "curtain",
+        1.54,
+        .55
+    );
+
+    curtainContainer.classList.remove(
+        "close"
+    );
+
+},3500);
+
+  setTimeout(() => {
+    revealQuestionScene();
+  }, 3800);
+
+  setTimeout(() => {
+    transitioning = false;
+  }, 5500);
+}
+
+function returnToWheel() {
+  if (transitioning) return;
+
+  if (questionScreen.classList.contains("hiddenQuestion")) {
+    return;
+  }
+
+  stopQuestionVoice({ restoreMusic: true });
+
+  if (questionCount >= questions.length) {
+    showCompletionFinale();
+
+    return;
+  }
+
+  transitioning = true;
+
+  continueButton.disabled = true;
+
+  continueButton.classList.add("exitUp");
+
+  setTimeout(() => {
+    questionText.classList.add("exitUp");
+  }, 250);
+
+  setTimeout(() => {
+    questionTitle.classList.add("exitUp");
+  }, 500);
+
+  spotlight.style.opacity = "0";
+
+  setTimeout(()=>{
+
+    playSFX(
+        "curtain",
+        1.54,
+        .55
+    );
+
+    curtainContainer.classList.add(
+        "close"
+    );
+
+},1250);
+
+  setTimeout(() => {
+    questionScreen.classList.add("hiddenQuestion");
+
+    continueButton.classList.remove(
+      "showContinue",
+      "exitUp",
+      "continueDisabled",
+    );
+
+    continueButton.disabled = false;
+
+    continueButton.style.opacity = "";
+
+    continueButton.style.transform = "";
+
+    questionText.classList.remove("exitUp");
+
+    questionText.innerHTML = "";
+
+    questionText.style.opacity = "0";
+
+    questionText.style.transform = "translateY(40px)";
+
+    questionTitle.classList.remove(
+      "showQuestionTitle",
+      "hideQuestionTitle",
+      "questionLand",
+      "drawLine",
+      "exitUp",
+    );
+
+    questionTitle.style.opacity = "";
+
+    questionTitle.style.visibility = "";
+
+    questionTitle.style.transform = "";
+
+    /*
+        Restore wheel controls
+        */
+
+    pointer.style.opacity = "1";
+
+    spinButton.disabled = false;
+
+    spinButton.classList.add("glowButton");
+  }, 3400);
+
+  setTimeout(()=>{
+
+    playSFX(
+        "curtain",
+        1.54,
+        .55
+    );
+
+    curtainContainer.classList.remove(
+        "close"
+    );
+
+},3900);
+
+  setTimeout(() => {
+    transitioning = false;
+  }, 6100);
+}
+
+continueButton.addEventListener("click", returnToWheel);
+
+finaleWheelButton.addEventListener(
+  "click",
+  returnFromFinaleToWheel,
+);
+
+finalQuestionButton.addEventListener(
+  "click",
+  startFinalQuestionSequence,
+);
+
+revealAnswerButton.addEventListener(
+  "click",
+  revealPresentation,
+);
+
+tabPrompt.addEventListener("click", () => {
+  startQuestionTransition();
+});
+
+document.addEventListener("keydown", (e) => {
+        const entryIsVisible =
+        entryScreen.style.display !== "none";
+
+    if(
+        e.key === "Enter" &&
+        entryIsVisible
+    ){
+
+        e.preventDefault();
+
+        if(!enterButton.disabled){
+
+            enterButton.click();
+
+        }
+
+        return;
+
+    }
+  if (e.key === "Escape") {
+    closePresenterConsole();
+
+    return;
+  }
+
+  if (e.key.toLowerCase() === "c") {
+    togglePresenterConsole();
+
+    return;
+  }
+
+  if (e.key.toLowerCase() === "m") {
+
+    e.preventDefault();
+
+    toggleMasterAudio();
+
+    return;
+
+}
+
+  const consoleIsOpen = !presenterConsole.classList.contains("consoleClosed");
+
+  if (consoleIsOpen) {
+    return;
+  }
+
+  const finaleIsVisible =
+    !finaleScreen.classList.contains("finaleHidden");
+
+  if (finaleIsVisible) {
+    if (
+    e.key.toLowerCase() === "r" &&
+    completionScene.classList.contains(
+        "finaleSceneVisible"
+    ) &&
+    finaleControlsRevealed &&
+    !finaleWheelButton.disabled
+) {
+
+    e.preventDefault();
+
+    finaleWheelButton.click();
+
+    return;
+
+}
+    if (e.key === "Enter") {
+      if (
+        document.activeElement === finaleWheelButton ||
+        document.activeElement === finalQuestionButton ||
+        document.activeElement === revealAnswerButton
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+
+      if (
+    revealAnswerButton.classList.contains(
+        "showRevealButton"
+    )
+) {
+
+    revealAnswerButton.click();
+
+}
+
+else if (
+    completionScene.classList.contains(
+        "finaleSceneVisible"
+    )
+) {
+
+    if (!finaleControlsRevealed) {
+
+        revealFinaleControls();
+
+    }
+
+    else {
+
+        finalQuestionButton.click();
+
+    }
+
+}
+    }
+
+    return;
+  }
+
+  if (e.key === "Tab") {
+    e.preventDefault();
+
+    startQuestionTransition();
+
+    return;
+  }
+
+  if (e.code === "Space") {
+    e.preventDefault();
+
+    const wheelIsVisible = questionScreen.classList.contains("hiddenQuestion");
+
+    const popupIsClosed = winnerPopup.classList.contains("hidden");
+
+    if (!spinning && wheelIsVisible && popupIsClosed) {
+      spinButton.click();
+    }
+
+    return;
+  }
+
+  if (e.key === "Enter") {
+    const questionIsVisible =
+      !questionScreen.classList.contains("hiddenQuestion");
+
+    if (questionIsVisible) {
+      returnToWheel();
+    }
+  }
+});
+
+loadBackgroundMusic("audio/music/background.mp3");
+
+loadSFX(
+    "curtain",
+    "audio/sfx/curtain.mp3"
+);
+
+updateConsoleStatus();
+
+const FINALE_TEST_MODE = false;
+
+function startFinaleTestMode() {
+
+    clearFinaleTimers();
+
+    sessionComplete = true;
+    transitioning = true;
+
+    questionCount = questions.length;
+
+    askedNumbers.length = 0;
+
+    askedNumbers.push(
+        35,
+        13,
+        31,
+        54,
+        17
+    );
+
+    updateConsoleStatus();
+
+    entryScreen.style.display = "none";
+
+    winnerPopup.classList.add("hidden");
+
+    questionScreen.classList.add(
+        "hiddenQuestion"
+    );
+
+    spinButton.textContent = "FINAL";
+
+    spinButton.setAttribute(
+        "aria-label",
+        "Return to the ending"
+    );
+
+    const leftCurtain =
+        document.getElementById(
+            "leftCurtain"
+        );
+
+    const rightCurtain =
+        document.getElementById(
+            "rightCurtain"
+        );
+
+    leftCurtain.style.transition = "none";
+    rightCurtain.style.transition = "none";
+
+    curtainContainer.classList.add(
+        "close"
+    );
+
+    void curtainContainer.offsetWidth;
+
+    leftCurtain.style.transition = "";
+    rightCurtain.style.transition = "";
+
+    prepareFinaleSummary();
+
+    scheduleFinale(() => {
+
+        curtainContainer.classList.remove(
+            "close"
+        );
+
+    }, 700);
+
+    scheduleFinale(() => {
+
+        revealFinaleSummary();
+
+    }, 3300);
+
+    scheduleFinale(() => {
+
+        transitioning = false;
+
+    }, 12400);
+
+}
+
+if (FINALE_TEST_MODE) {
+
+    startFinaleTestMode();
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+        circle at top,
+        #263b8f 0%,
+        #111936 35%,
+        #050814 100%
+    );
+
+    color:white;
+
+    overflow:hidden;
+
+}
+
+
+header{
+
+    height:120px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+
+header h1{
+
+    font-size:38px;
+
+    letter-spacing:3px;
+
+    font-weight:800;
+
+}
+
+.headerGroupAccent{
+
+    color:#FFD700;
+
+    text-shadow:
+        0 0 14px
+        rgba(255,215,0,.16);
+
+}
+
+header p{
+
+    margin-top:12px;
+
+    opacity:.8;
+
+    font-size:18px;
+
+}
+
+
+main{
+
+    position:relative;
+
+    width:100%;
+
+    height:calc(100vh - 120px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.wheel-wrapper{
+
+    position:relative;
+
+    width:min(71vh, 660px);
+
+    height:min(71vh, 660px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+#pointer{
+
+    opacity:0;
+
+    position:absolute;
+
+    top:-34px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:9999;
+
+    font-size:50px;
+
+    color:gold;
+
+    text-shadow:
+    0 0 10px gold,
+    0 0 20px orange;
+
+    transition: opacity .3s;
+
+}
+
+#wheelContainer{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+}
+
+#wheelSVG{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+#spinButton{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:136px;
+
+    height:136px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:#5d3bff;
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+}
+
+#spinButton:hover{
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
+
+    filter:brightness(1.15);
+
+}
+
+#spinButton:active{
+
+    transform:
+        translate(-50%,-50%)
+        scale(.95);
+
+}
+
+#winnerPopup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(6,8,18,.42);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    transition: opacity .8s ease;
+
+}
+
+#winnerPopup.hidden{
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+.popupCard{
+
+    width:500px;
+
+    background:#EFE3C2;
+
+    color:#2F2418;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    position:relative;
+
+    transform:scale(0.85);
+
+    opacity:0;
+
+    transition:
+        transform 1s cubic-bezier(.34,1.56,.64,1),
+        opacity .8s ease;
+
+    box-shadow:
+    0 28px 70px rgba(0,0,0,.55),
+    0 0 35px rgba(255,215,0,.10);
+
+}
+
+.popupCard h3{
+
+    color:#2F2418;
+
+    font-size:28px;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+#winnerPopup:not(.hidden){
+
+    opacity:1;
+
+}
+
+
+#winnerPopup:not(.hidden) .popupCard{
+
+    transform:scale(1);
+
+    opacity:1;
+
+}
+
+#winnerPopup.hidden .popupCard{
+
+    transform:scale(0.85);
+
+    opacity:0;
+
+}
+
+#closePopup{
+
+    position:absolute;
+
+    right:18px;
+
+    top:12px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:28px;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease,
+        transform .3s ease;
+
+}
+
+#closePopup:hover{
+
+    background:#ff4d4d;
+
+    color:white;
+
+    box-shadow:
+        0 0 15px rgba(255,77,77,.8);
+
+    transform:scale(1.1);
+
+}
+
+#winnerNumber{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:70px;
+
+    font-weight:700;
+
+    transition:
+        left 1.8s ease,
+        font-size 1.8s ease,
+        opacity 1.8s ease;
+
+}
+
+#winnerID{
+
+    position:absolute;
+
+    left:37%;
+
+    top:50%;
+
+    transform:translate(-50%, -50%);
+
+    font-size:28px;
+
+    font-weight:650;
+
+    letter-spacing:0.5px;
+
+    opacity:0;
+
+    transition:
+        opacity .6s ease;
+
+}
+
+#winnerName{
+
+    margin-top:45px;
+
+    font-family:"Segoe UI", Arial, sans-serif;
+
+    font-size:21px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    opacity:0;
+
+    position:relative;
+
+    top:-50px;
+
+    text-align:center;
+
+    width:100%;
+
+    transform:translateY(20px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+
+#winnerName.showName{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+@keyframes popupZoom{
+
+    0%{
+
+        transform:scale(.6);
+        opacity:0;
+
+    }
+
+    70%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+        opacity:1;
+
+    }
+
+}
+
+.confetti{
+
+    position:fixed;
+
+    width:10px;
+
+    height:10px;
+
+    pointer-events:none;
+
+    animation:confettiFall 2.5s linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+    0%{
+
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
+
+    }
+
+}
+
+.balloon{
+
+    position:fixed;
+
+    bottom:-120px;
+
+    width:45px;
+
+    height:60px;
+
+    border-radius:50% 50% 45% 45%;
+
+    pointer-events:none;
+
+    animation:balloonUp 5s linear forwards;
+
+}
+
+.balloon::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:60px;
+
+    width:2px;
+
+    height:50px;
+
+    background:white;
+
+    transform:translateX(-50%);
+
+}
+
+@keyframes balloonUp{
+
+    0%{
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:translateY(-120vh);
+
+        opacity:0;
+
+    }
+
+}
+
+.sparkle{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:gold;
+
+    box-shadow:
+        0 0 10px gold,
+        0 0 20px gold;
+
+    pointer-events:none;
+
+    animation:sparkle 1.5s ease-out forwards;
+
+}
+
+@keyframes sparkle{
+
+    0%{
+
+        transform:scale(0);
+
+        opacity:1;
+
+    }
+
+    50%{
+
+        transform:scale(1.5);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(-40px)
+            scale(0);
+
+        opacity:0;
+
+    }
+
+}
+
+header,
+.wheel-wrapper{
+
+    opacity:0;
+
+}
+
+.showHeader{
+
+    animation:showHeader .8s ease forwards;
+
+}
+
+@keyframes showHeader{
+
+    0%{
+
+        opacity:0;
+        transform:scale(.6);
+
+    }
+
+    70%{
+
+        opacity:1;
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+.showWheel{
+
+    animation:dropWheel 1.5s ease forwards;
+
+}
+
+@keyframes dropWheel{
+
+    0%{
+
+        opacity:0;
+        transform:
+            translateY(-700px);
+
+    }
+
+    70%{
+
+        opacity:1;
+        transform:
+            translateY(30px);
+
+    }
+
+    100%{
+
+        opacity:1;
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+.showPointer{
+
+    animation:pointerAppear .6s ease forwards;
+
+}
+
+@keyframes pointerAppear{
+
+    0%{
+
+        opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(-20px);
+
+    }
+
+    100%{
+
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+
+    }
+
+}
+
+.glowButton{
+
+    animation:buttonGlow 1.8s ease-in-out infinite;
+
+}
+
+@keyframes buttonGlow{
+
+    0%{
+
+        box-shadow:
+            0 0 10px #5d3bff;
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 25px #8f6dff,
+            0 0 45px #8f6dff;
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 10px #5d3bff;
+
+    }
+
+}
+
+.hiddenInfo{
+
+    opacity:0;
+
+}
+
+#winnerID.revealID{
+
+    opacity:1;
+
+}
+
+.moveNumber{
+
+    transform:translateX(120px);
+
+    transition:transform .6s ease;
+
+}
+
+#identitySection{
+
+    position:relative;
+
+    height:110px;
+
+    width:100%;
+
+}
+
+
+#idPrefix{
+
+    position:absolute;
+
+    left:45%;
+
+    top:50%;
+
+    transform:translate(-50%, -50%);
+
+    font-size:28px;
+
+    font-weight:600;
+
+    opacity:0;
+
+    transition:
+        opacity 1.5s ease;
+
+}
+
+.hiddenPrompt{
+
+    opacity:0;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+    transform:translateY(10px);
+
+}
+
+.showPrompt{
+
+    opacity:1;
+
+}
+
+#readyPrompt{
+
+    margin-top:14px;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    color:#B71C1C;
+
+    text-shadow:
+        0 0 8px rgba(183,28,28,.35);
+
+    transform:translateY(-5px);
+
+    position:relative;
+
+    top:-30px;
+
+}
+
+#tabPrompt{
+
+    cursor:pointer;
+    
+    margin-top:18px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    position:relative;
+
+    top:-15px;
+
+}
+
+#tabPrompt:hover{
+
+    transform:translateY(-2px);
+
+}
+
+#tabKey{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:65px;
+
+    height:34px;
+
+    padding:0 12px;
+
+    margin:0 8px;
+
+    border-radius:8px;
+
+    background:#151515;
+
+    color:#ffffff;
+
+    font-family:"Courier New", monospace;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 0 8px rgba(0,255,255,.5),
+        inset 0 -3px 5px rgba(0,0,0,.5);
+
+    animation:tabGlow 1.8s ease-in-out infinite;
+
+}
+
+.showReady{
+
+    animation:readyReveal .8s ease forwards;
+
+}
+
+@keyframes readyReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(8px)
+            scale(.9);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+@keyframes tabGlow{
+
+    0%{
+
+        box-shadow:
+        0 0 5px rgba(0,255,255,.4),
+        inset 0 -3px 5px rgba(0,0,0,.5);
+
+        transform:scale(1);
+
+    }
+
+
+    50%{
+
+        box-shadow:
+        0 0 18px rgba(0,255,255,.9),
+        0 0 35px rgba(0,255,255,.5),
+        inset 0 -3px 5px rgba(0,0,0,.5);
+
+        transform:scale(1.08);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+        0 0 5px rgba(0,255,255,.4),
+        inset 0 -3px 5px rgba(0,0,0,.5);
+
+        transform:scale(1);
+
+    }
+
+}
+
+#leftCurtain,
+#rightCurtain{
+
+    position:absolute;
+
+    top:0;
+
+    width:50%;
+
+    height:100%;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        #3A0006 0px,
+        #6B0012 18px,
+        #8A1525 35px,
+        #6B0012 52px,
+        #3A0006 70px
+    );
+
+}
+
+#leftCurtain{
+
+    left:0;
+
+    transform:translateX(-100%);
+
+    border-right:
+        3px solid rgba(255,215,0,.15);
+
+    z-index:2;
+
+}
+
+#rightCurtain{
+
+    right:0;
+
+    transform:translateX(100%);
+
+    border-left:
+        3px solid rgba(255,215,0,.15);
+
+    z-index:1;
+
+}
+
+#leftCurtain,
+#rightCurtain{
+
+    transition:
+        transform 2s cubic-bezier(.77,0,.18,1);
+
+    filter:
+        brightness(.95)
+        contrast(1.15);
+
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,.65),
+        0 0 30px rgba(0,0,0,.8);
+
+    backdrop-filter: blur(2px);
+    
+}
+
+
+#curtainContainer.close #leftCurtain{
+
+    transform:translateX(0);
+
+}
+
+
+#curtainContainer.close #rightCurtain{
+
+    transform:translateX(0);
+
+}
+
+#curtainContainer{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    pointer-events:none;
+
+
+}
+
+#curtainContainer.introCurtain{
+
+    z-index:21000;
+
+}
+
+#curtainContainer.introCurtain #leftCurtain,
+#curtainContainer.introCurtain #rightCurtain{
+
+    transition:
+        transform 2.8s
+        cubic-bezier(.77,0,.18,1);
+
+}
+
+#questionScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #252040,
+        #05050b 75%
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    z-index:5000;
+
+}
+
+.hiddenQuestion{
+
+    display:none !important;
+
+}
+
+#spotlight{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,215,0,.18),
+        transparent 45%
+    );
+
+    opacity:0;
+
+    transition:opacity 1.2s ease;
+
+}
+
+#questionContent{
+
+    position:relative;
+
+    text-align:center;
+
+    color:white;
+
+    z-index:2;
+
+}
+
+#questionTitle{
+
+    font-size:70px;
+
+    font-weight:900;
+
+    letter-spacing:8px;
+
+    color:#FFD700;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(40px) scale(.9);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.22,1,.36,1);
+
+    text-shadow:
+        0 0 12px rgba(255,215,0,.45),
+        0 0 30px rgba(255,170,0,.22);
+
+}
+
+#questionTitle.showQuestionTitle{
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+    transform:translateY(0) scale(1) !important;
+
+}
+
+#questionText{
+
+    margin:45px auto 0;
+
+    max-width:1050px;
+
+    text-align:center;
+
+    font-size:clamp(30px, 2.5vw, 38px);
+
+    line-height:1.4;
+
+    font-weight:600;
+
+    color:#ffffff;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:all 1s ease;
+}
+
+#continueButton{
+
+    margin-top:60px;
+
+    padding:16px 42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #FFD700,
+        #F4A900
+    );
+
+    color:#17110A;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateY(25px) scale(.95);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        box-shadow .3s ease,
+        filter .3s ease;
+
+}
+
+#continueButton.showContinue{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:translateY(0) scale(1);
+
+}
+
+#continueButton:hover{
+
+    filter:brightness(1.12);
+
+    box-shadow:
+        0 0 18px rgba(255,215,0,.65),
+        0 0 35px rgba(255,165,0,.35);
+
+    transform:translateY(-3px) scale(1.04);
+
+}
+
+#continueButton:active{
+
+    transform:translateY(0) scale(.96);
+
+}
+
+#continueButton:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.5;
+
+}
+
+.questionWord{
+
+    display:inline-block;
+
+    opacity:0;
+
+    filter:blur(7px);
+
+    transform:
+        translateY(22px)
+        scale(.92);
+
+    transition:
+        opacity .55s ease,
+        transform .55s cubic-bezier(.22,1,.36,1),
+        filter .55s ease;
+
+}
+
+.questionWord.showWord{
+
+    opacity:1;
+
+    filter:blur(0);
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+#questionTitle{
+
+    text-shadow:
+        0 0 12px rgba(255,215,0,.45),
+        0 0 30px rgba(255,170,0,.22);
+
+}
+
+#questionTitle.questionImpact{
+
+    animation:questionImpact .7s ease;
+
+}
+
+@keyframes questionImpact{
+
+    0%{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        text-shadow:
+            0 0 12px rgba(255,215,0,.45);
+
+    }
+
+    35%{
+
+        transform:
+            translateY(0)
+            scale(1.08);
+
+        text-shadow:
+            0 0 18px #FFD700,
+            0 0 45px rgba(255,165,0,.8),
+            0 0 80px rgba(255,120,0,.4);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        text-shadow:
+            0 0 12px rgba(255,215,0,.45),
+            0 0 30px rgba(255,170,0,.22);
+
+    }
+
+}
+
+.questionWord{
+
+    margin-right:0.28em;
+
+}
+
+.questionWord:last-child{
+
+    margin-right:0;
+
+}
+
+#questionTitle{
+
+    transform-origin:center;
+
+}
+
+/*#questionTitle.questionLand{
+
+    animation:titleLand .9s
+        cubic-bezier(.17,.89,.32,1.35)
+        forwards;
+
+}*/
+
+@keyframes titleLand{
+
+    0%{
+
+        transform:
+            translateY(-120px)
+            scale(.55);
+
+        opacity:0;
+
+        filter:blur(12px);
+
+    }
+
+    60%{
+
+        transform:
+            translateY(15px)
+            scale(1.08);
+
+        opacity:1;
+
+        filter:blur(0);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity:1;
+
+        filter:blur(0);
+
+    }
+
+}
+
+#questionTitle::after{
+
+    content:"";
+
+    display:block;
+
+    width:0;
+
+    height:4px;
+
+    margin:20px auto 0;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #FFD700,
+        #FFF4A3,
+        #FFD700,
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px rgba(255,215,0,.75),
+        0 0 24px rgba(255,165,0,.45);
+
+    opacity:0;
+
+}
+
+#questionTitle.drawLine::after{
+
+    animation:drawQuestionLine .85s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+}
+
+@keyframes drawQuestionLine{
+
+    0%{
+
+        width:0;
+        opacity:0;
+
+    }
+
+    25%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        width:72%;
+        opacity:1;
+
+    }
+
+}
+
+.winnerPulse{
+
+    animation:winnerPulse .75s ease-in-out 2;
+
+}
+
+@keyframes winnerPulse{
+
+    0%{
+
+        filter:brightness(1);
+
+    }
+
+    50%{
+
+        filter:
+            brightness(1.8)
+            drop-shadow(0 0 10px #00E5FF)
+            drop-shadow(0 0 20px #7DF9FF);
+
+    }
+
+    100%{
+
+        filter:brightness(1);
+
+    }
+
+}
+
+#consoleButton{
+
+    position:fixed;
+
+    top:24px;
+
+    right:28px;
+
+    width:48px;
+
+    height:48px;
+
+    border:1px solid rgba(255,215,0,.35);
+
+    border-radius:14px;
+
+    background:rgba(8,11,25,.72);
+
+    color:#FFD700;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+    z-index:12000;
+
+    transition:
+        transform .45s
+            cubic-bezier(.22,1,.36,1),
+        opacity .35s ease,
+        filter .35s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+
+}
+
+#consoleButton:hover{
+
+    transform:
+        rotate(35deg)
+        scale(1.06);
+
+    background:rgba(24,29,55,.95);
+
+    box-shadow:
+        0 0 20px rgba(255,215,0,.28);
+
+}
+
+#consoleOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.5);
+
+    opacity:1;
+
+    z-index:11998;
+
+    transition:opacity .4s ease;
+
+}
+
+#consoleOverlay.consoleHidden{
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+#presenterConsole{
+
+    position:fixed;
+
+    top:0;
+
+    right:0;
+
+    width:min(420px, 92vw);
+
+    height:100vh;
+
+    padding:30px 26px;
+
+    overflow-y:auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(19,23,45,.98),
+            rgba(5,7,17,.99)
+        );
+
+    border-left:
+        1px solid rgba(255,215,0,.22);
+
+    box-shadow:
+        -20px 0 60px rgba(0,0,0,.55);
+
+    z-index:11999;
+
+    transform:translateX(0);
+
+    transition:
+        transform .55s
+        cubic-bezier(.22,1,.36,1);
+
+}
+
+#presenterConsole.consoleClosed{
+
+    transform:translateX(105%);
+
+}
+
+.consoleHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    padding-bottom:22px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.1);
+
+}
+
+.consoleEyebrow{
+
+    color:#FFD700;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    margin-bottom:8px;
+
+}
+
+.consoleHeader h2{
+
+    font-size:27px;
+
+    letter-spacing:.5px;
+
+}
+
+#closeConsole{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+#closeConsole:hover{
+
+    background:#B71C1C;
+
+    transform:scale(1.06);
+
+}
+
+.consoleSection{
+
+    padding:24px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+.consoleSection h3{
+
+    margin-bottom:17px;
+
+    color:#FFD700;
+
+    font-size:15px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+}
+
+.statusGrid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+}
+
+.statusCard{
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.06);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+.statusCard span{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:rgba(255,255,255,.65);
+
+    font-size:13px;
+
+}
+
+.statusCard strong{
+
+    color:white;
+
+    font-size:27px;
+
+}
+
+.consoleToggle{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    padding:14px 0;
+
+    cursor:pointer;
+
+}
+
+.consoleToggle > span:first-child{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.consoleToggle strong{
+
+    font-size:15px;
+
+}
+
+.consoleToggle small{
+
+    color:rgba(255,255,255,.58);
+
+    font-size:12px;
+
+}
+
+.consoleToggle input{
+
+    display:none;
+
+}
+
+.toggleSwitch{
+
+    position:relative;
+
+    flex-shrink:0;
+
+    width:48px;
+
+    height:26px;
+
+    border-radius:999px;
+
+    background:#44495B;
+
+    transition:background .3s ease;
+
+}
+
+.toggleSwitch::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:3px;
+
+    left:3px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:transform .3s ease;
+
+}
+
+.consoleToggle input:checked + .toggleSwitch{
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFD700,
+            #E7A900
+        );
+
+}
+
+.consoleToggle input:checked + .toggleSwitch::after{
+
+    transform:translateX(22px);
+
+}
+
+.shortcutRow{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:10px 0;
+
+    color:rgba(255,255,255,.82);
+
+}
+
+.shortcutRow kbd{
+
+    min-width:72px;
+
+    padding:7px 10px;
+
+    border-radius:7px;
+
+    background:#111523;
+
+    color:#FFD700;
+
+    border:
+        1px solid rgba(255,215,0,.28);
+
+    text-align:center;
+
+    font-family:"Courier New", monospace;
+
+    font-size:13px;
+
+    box-shadow:
+        inset 0 -2px 4px rgba(0,0,0,.55);
+
+}
+
+.consoleFooter{
+
+    padding-top:24px;
+
+    color:rgba(255,255,255,.4);
+
+    font-size:12px;
+
+    text-align:center;
+
+}
+
+#questionTitle.hideQuestionTitle{
+
+    opacity:0 !important;
+
+    visibility:visible !important;
+
+    transform:
+        translateY(-20px)
+        scale(.96) !important;
+
+}
+
+#continueButton.exitUp{
+
+    opacity:0 !important;
+
+    transform:
+        translateY(-28px)
+        scale(.96) !important;
+
+    pointer-events:none;
+
+}
+
+#questionText.exitUp{
+
+    opacity:0 !important;
+
+    transform:
+        translateY(-32px) !important;
+
+}
+
+#questionTitle.exitUp{
+
+    opacity:0 !important;
+
+    transform:
+        translateY(-28px)
+        scale(.96) !important;
+
+}
+
+#continueButton.exitUp,
+#questionText.exitUp,
+#questionTitle.exitUp{
+
+    transition:
+        opacity 1.05s ease,
+        transform 1.05s cubic-bezier(.22,1,.36,1) !important;
+
+}
+
+#entryScreen{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            #17204A 0%,
+            #0A102B 45%,
+            #03050D 100%
+        );
+
+    z-index:20000;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+    opacity 1.1s ease,
+    visibility 0s linear 1.1s;
+
+}
+
+#entryScreen.hideEntry{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+#entryAmbientGlow{
+
+    position:absolute;
+
+    width:650px;
+    height:650px;
+
+    left:50%;
+    top:50%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(93,59,255,.12),
+            rgba(44,122,255,.05) 45%,
+            transparent 72%
+        );
+
+    filter:blur(30px);
+
+    pointer-events:none;
+
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+    animation:
+        entryGlowWake
+        3.2s
+        ease
+        forwards;
+
+}
+
+#entryContent{
+
+    position:relative;
+
+    width:min(960px, 90vw);
+
+    max-height:92vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    z-index:2;
+
+    transform:translateY(-8px);
+
+}
+
+#entryEyebrow{
+
+    color:#FFD700;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    letter-spacing:8px;
+
+    text-transform:uppercase;
+
+    margin-bottom:14px;
+
+    opacity:0;
+
+    animation:
+        entryEyebrowReveal
+        1s
+        cubic-bezier(.22,1,.36,1)
+        .3s
+        forwards;
+
+}
+
+#entryAccentLine{
+
+    width:48px;
+    height:2px;
+
+    margin-bottom:28px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #FFD700,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(255,215,0,.32);
+
+    transform:scaleX(0);
+
+    opacity:0;
+
+    animation:
+        entryLineReveal
+        1s
+        cubic-bezier(.22,1,.36,1)
+        1.1s
+        forwards;
+
+}
+
+#entryTitle{
+
+    margin:0;
+
+    max-width:850px;
+
+    color:#FFFFFF;
+
+    font-size:
+        clamp(
+            27px,
+            2.45vw,
+            36px
+        );
+
+    line-height:1.18;
+
+    font-weight:750;
+
+    letter-spacing:-.4px;
+
+    text-shadow:
+        0 5px 24px
+        rgba(0,0,0,.30);
+
+    opacity:0;
+
+    transform:translateY(18px);
+
+    animation:
+        entryTitleReveal
+        1.2s
+        cubic-bezier(.22,1,.36,1)
+        1.75s
+        forwards;
+
+}
+
+
+#entryTitle span{
+
+    display:inline-block;
+
+    margin-top:4px;
+
+    font-size:.88em;
+
+    font-weight:650;
+
+    color:rgba(255,255,255,.84);
+
+}
+
+#entryTeam{
+
+    width:min(900px, 88vw);
+
+    margin-top:38px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:28px;
+
+}
+
+.entryRow{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.entryRowThree{
+
+    gap:56px;
+
+}
+
+
+.entryRowTwo{
+
+    gap:80px;
+
+}
+
+.entryMember{
+
+    position:relative;
+
+    width:220px;
+
+    padding:4px 12px;
+
+    text-align:center;
+
+    flex-shrink:0;
+
+    opacity:0;
+
+    transform:translateY(14px);
+
+}
+
+.entryStudentId{
+
+    margin-bottom:6px;
+
+    color:
+        rgba(255,215,0,.72);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.entryStudentName{
+
+    color:
+        rgba(255,255,255,.95);
+
+    font-size:16.5px;
+
+    font-weight:650;
+
+    letter-spacing:.2px;
+
+}
+
+.entryRowThree .entryMember:nth-child(1){
+
+    animation:
+        entryMemberReveal
+        1.05s
+        cubic-bezier(.22,1,.36,1)
+        3.4s
+        forwards;
+
+}
+
+
+.entryRowThree .entryMember:nth-child(2){
+
+    animation:
+        entryMemberReveal
+        1.05s
+        cubic-bezier(.22,1,.36,1)
+        3.95s
+        forwards;
+
+}
+
+
+.entryRowThree .entryMember:nth-child(3){
+
+    animation:
+        entryMemberReveal
+        1.05s
+        cubic-bezier(.22,1,.36,1)
+        4.5s
+        forwards;
+
+}
+
+
+.entryRowTwo .entryMember:nth-child(1){
+
+    animation:
+        entryMemberReveal
+        1.05s
+        cubic-bezier(.22,1,.36,1)
+        5.15s
+        forwards;
+
+}
+
+
+.entryRowTwo .entryMember:nth-child(2){
+
+    animation:
+        entryMemberReveal
+        1.05s
+        cubic-bezier(.22,1,.36,1)
+        5.7s
+        forwards;
+
+}
+
+#enterButton{
+
+    margin-top:40px;
+
+    min-width:170px;
+
+    padding:14px 28px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    align-self:center;
+
+    border:
+        1px solid
+        rgba(255,215,0,.75);
+
+    border-radius:12px;
+
+    background:
+        rgba(7,12,34,.55);
+
+    color:#FFD700;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,.28),
+        inset 0 0 14px
+        rgba(255,215,0,.04),
+        0 0 18px
+        rgba(255,215,0,.08);
+
+    opacity:0;
+
+    transform:
+        translateY(12px)
+        scale(.96);
+
+    animation:
+        entryButtonReveal
+        1.1s
+        cubic-bezier(.22,1,.36,1)
+        7.6s
+        forwards;
+
+    transition:
+        color .35s ease,
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        filter .35s ease;
+
+}
+
+#enterButton:hover{
+
+    background:
+        rgba(255,215,0,.95);
+
+    color:#11162D;
+
+    border-color:#FFD700;
+
+    box-shadow:
+        0 14px 34px
+        rgba(0,0,0,.35),
+        0 0 24px
+        rgba(255,215,0,.30);
+
+}
+
+#enterButton.enterActivated{
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFD700,
+            #E4A900
+        ) !important;
+
+    color:#11162D !important;
+
+    border-color:#FFD700;
+
+    box-shadow:
+        inset 0 3px 7px rgba(122,76,0,.28),
+        0 0 30px rgba(255,215,0,.38) !important;
+
+    filter:brightness(1.05);
+
+    pointer-events:none;
+
+}
+
+#enterButton:active{
+
+    filter:brightness(.88);
+
+}
+
+.entryArrow{
+
+    display:inline-block;
+
+    font-size:17px;
+
+    line-height:1;
+
+    opacity:.8;
+
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
+
+}
+
+#enterButton:hover .entryArrow{
+
+    transform:translateX(6px);
+
+    opacity:1;
+
+}
+
+@keyframes entryGlowWake{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.8);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes entryEyebrowReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(-10px);
+
+        letter-spacing:11px;
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+        letter-spacing:8px;
+
+    }
+
+}
+
+
+@keyframes entryLineReveal{
+
+    0%{
+
+        transform:scaleX(0);
+
+        opacity:0;
+
+    }
+
+    100%{
+
+        transform:scaleX(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+@keyframes entryTitleReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(18px)
+            scale(.98);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes entryMemberReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(14px);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+@keyframes entryButtonReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(12px)
+            scale(.96);
+
+        box-shadow:
+            0 0 0
+            rgba(255,215,0,0);
+
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateY(-2px)
+            scale(1.02);
+
+        box-shadow:
+            0 12px 32px
+            rgba(0,0,0,.30),
+            0 0 32px
+            rgba(255,215,0,.24);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+@media (max-height:700px){
+
+    #entryContent{
+
+        transform:translateY(-4px);
+
+    }
+
+    #entryTeam{
+
+        margin-top:32px;
+
+        gap:22px;
+
+    }
+
+    #enterButton{
+
+        margin-top:32px;
+
+    }
+
+    .entryRowThree{
+
+        gap:35px;
+
+    }
+
+    .entryRowTwo{
+
+        gap:50px;
+
+    }
+
+}
+
+body:has(
+    #presenterConsole:not(.consoleClosed)
+) #consoleButton{
+
+    opacity:.18 !important;
+
+    transform:
+        translateX(52px)
+        rotate(90deg)
+        scale(.82) !important;
+
+    filter:
+        saturate(.6)
+        brightness(.75);
+
+    pointer-events:none;
+
+}
+
+body:has(
+    #presenterConsole:not(.consoleClosed)
+) #closeConsole{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+#audioToast{
+
+    position:fixed;
+
+    left:50%;
+    top:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap: 17px;
+
+    min-width: 280px;
+
+    max-width:calc(100vw - 40px);
+
+    padding:20px 30px;
+
+    border:
+    1px solid
+    rgba(255,215,0,.25);
+
+    border-radius:20px;
+
+   background:
+    linear-gradient(
+        135deg,
+        rgba(12,16,38,.78),
+        rgba(5,8,22,.68)
+    );
+
+    color:#ffffff;
+
+    box-shadow:
+    0 18px 50px
+        rgba(0,0,0,.42),
+    0 0 30px
+        rgba(255,215,0,.10),
+    inset 0 1px 0
+        rgba(255,255,255,.08);
+
+    backdrop-filter:
+    blur(24px)
+    brightness(.72)
+    saturate(75%);
+
+    -webkit-backdrop-filter:
+    blur(24px)
+    brightness(.72)
+    saturate(75%);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size:18px;
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    box-sizing:border-box;
+
+    white-space:nowrap;
+
+    opacity:0;
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transform:
+    translate(
+        -50%,
+        calc(-50% + 22px)
+    )
+    scale(.96);
+
+    transition:
+        opacity .3s ease,
+        transform .45s
+            cubic-bezier(.22,1,.36,1),
+        visibility 0s linear .45s;
+
+    z-index:30000;
+
+}
+
+
+#audioToast.showAudioToast{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transition:
+        opacity .3s ease,
+        transform .45s
+            cubic-bezier(.22,1,.36,1),
+        visibility 0s;
+
+}
+
+
+#audioToastIcon{
+
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#FFD700;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255,215,0,.4)
+        );
+
+}
+
+
+#audioToastIcon svg{
+
+    width:36px;
+    height:36px;
+
+    display:block;
+
+}
+
+#entryTitle .chatgptCreditLogo{
+
+    width:.82em;
+    height:.82em;
+
+    display:inline-block;
+
+    margin:
+        0 .08em
+        0 .18em;
+
+    object-fit:contain;
+
+    vertical-align:-.12em;
+
+    filter:
+        brightness(0)
+        invert(1);
+
+    opacity:.92;
+
+    pointer-events:none;
+
+}
+
+/* =========================================================
+   CINEMATIC FINALE
+   ========================================================= */
+
+#finaleScreen{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            #1D285D 0%,
+            #0B1230 43%,
+            #03050D 100%
+        );
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    z-index:4900;
+
+}
+
+#finaleScreen.finaleHidden{
+
+    display:none !important;
+
+}
+
+#finaleAmbientGlow{
+
+    position:absolute;
+
+    width:min(760px, 72vw);
+    height:min(760px, 72vw);
+
+    left:50%;
+    top:47%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(93,59,255,.13),
+            rgba(47,86,211,.055) 47%,
+            transparent 72%
+        );
+
+    filter:blur(34px);
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+
+}
+
+.finaleScene{
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px 48px;
+
+    text-align:center;
+
+    transition:
+        opacity .8s ease,
+        transform .9s cubic-bezier(.22,1,.36,1),
+        visibility 0s;
+
+}
+
+.finaleSceneHidden{
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transform:translateY(18px) scale(.985);
+
+    transition:
+        opacity .65s ease,
+        transform .75s ease,
+        visibility 0s linear .75s;
+
+}
+
+.finaleSceneVisible{
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transform:translateY(0) scale(1);
+
+}
+
+.finaleEyebrow,
+.finalQuestionEyebrow{
+
+    color:#FFD700;
+
+    font-size:13px;
+    font-weight:800;
+
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+}
+
+.finaleEyebrow{
+
+    opacity:0;
+    transform:translateY(-8px);
+
+}
+
+.finaleEyebrow span{
+
+    margin:0 10px;
+
+    color:rgba(255,255,255,.36);
+
+}
+
+#completionTitle{
+
+    margin-top:15px;
+
+    color:#FFFFFF;
+
+    font-size:clamp(36px, 4vw, 56px);
+    line-height:1.08;
+
+    font-weight:800;
+    letter-spacing:1px;
+
+    text-shadow:
+        0 8px 30px rgba(0,0,0,.35);
+
+    opacity:0;
+    transform:translateY(14px);
+
+}
+
+.finaleLead{
+
+    margin-top:13px;
+
+    color:rgba(255,255,255,.72);
+
+    font-size:17px;
+    font-weight:400;
+
+    opacity:0;
+    transform:translateY(12px);
+
+}
+
+.participantSection{
+
+    width:min(1080px, 92vw);
+
+    margin-top:30px;
+
+}
+
+.participantLabel{
+
+    margin-bottom:12px;
+
+    color:rgba(255,215,0,.68);
+
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+
+    opacity:0;
+
+}
+
+#participantCards{
+
+    width:100%;
+
+    display:grid;
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap:12px;
+
+}
+
+.participantCard{
+
+    min-width:0;
+    min-height:112px;
+
+    padding:15px 12px 13px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    border:
+        1px solid rgba(255,215,0,.19);
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,48,101,.62),
+            rgba(8,13,37,.64)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 14px 30px rgba(0,0,0,.16);
+
+    opacity:0;
+
+    transform:
+        translateY(18px)
+        scale(.98);
+
+}
+
+.participantQuestion{
+
+    color:rgba(255,215,0,.74);
+
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+
+}
+
+.participantNumber{
+
+    margin-top:7px;
+
+    color:#FFFFFF;
+
+    font-size:
+        clamp(
+            12px,
+            1.05vw,
+            15px
+        );
+
+    line-height:1.2;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+
+    white-space:nowrap;
+
+}
+
+.participantName{
+
+    width:100%;
+
+    margin-top:7px;
+
+    overflow:hidden;
+
+    color:rgba(255,255,255,.67);
+
+    font-size:11px;
+    font-weight:500;
+
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+}
+
+.finalePrompt{
+
+    margin-top:24px;
+
+    color:rgba(255,255,255,.58);
+
+    font-size:14px;
+    font-style:italic;
+
+    opacity:0;
+
+}
+
+.finaleActions{
+
+    margin-top:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:14px;
+
+    opacity:0;
+    transform:translateY(12px);
+
+}
+
+.finaleButton,
+#revealAnswerButton{
+
+    min-height:52px;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size:12px;
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease,
+        filter .3s ease;
+
+}
+
+.finaleButtonSecondary{
+
+    border:
+        1px solid rgba(255,255,255,.23);
+
+    background:rgba(7,12,34,.46);
+
+    color:rgba(255,255,255,.76);
+
+}
+
+.finaleButtonSecondary:hover{
+
+    border-color:rgba(255,255,255,.5);
+
+    background:rgba(255,255,255,.08);
+
+    color:#FFFFFF;
+
+    transform:translateY(-2px);
+
+}
+
+.finaleButtonPrimary,
+#revealAnswerButton{
+
+    border:1px solid #FFD700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFE34D,
+            #EAAA00
+        );
+
+    color:#11162D;
+
+    box-shadow:
+        0 11px 28px rgba(0,0,0,.24),
+        0 0 20px rgba(255,215,0,.14);
+
+}
+
+.finaleButtonPrimary span,
+#revealAnswerButton span{
+
+    display:inline-block;
+
+    margin-left:10px;
+
+    transition:transform .3s ease;
+
+}
+
+.finaleButtonPrimary:hover,
+#revealAnswerButton:hover{
+
+    filter:brightness(1.08);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 34px rgba(0,0,0,.3),
+        0 0 28px rgba(255,215,0,.3);
+
+}
+
+.finaleButtonPrimary:hover span,
+#revealAnswerButton:hover span{
+
+    transform:translateX(5px);
+
+}
+
+.finaleButton:active,
+#revealAnswerButton:active{
+
+    transform:translateY(0) scale(.97);
+
+}
+
+#completionScene.finaleSceneVisible
+.finaleEyebrow{
+
+    animation:
+        finaleItemReveal .9s
+        cubic-bezier(.22,1,.36,1)
+        .8s forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+#completionTitle{
+
+    animation:
+        finaleItemReveal 1.05s
+        cubic-bezier(.22,1,.36,1)
+        2s forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+.finaleLead{
+
+    animation:
+        finaleItemReveal .9s
+        cubic-bezier(.22,1,.36,1)
+        3.5s forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+.participantLabel{
+
+    animation:
+        finaleFadeIn .75s ease
+        5s forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+.participantCard{
+
+    animation:
+        participantReveal .85s
+        cubic-bezier(.22,1,.36,1)
+        var(--participant-delay, 5.8s)
+        forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+.finalePrompt.showFinalePrompt{
+
+    animation:
+        finaleFadeIn .8s ease
+        forwards;
+
+}
+
+#completionScene.finaleSceneVisible
+.finaleActions.showFinaleActions{
+
+    animation:
+        finaleItemReveal .9s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+}
+
+@keyframes finaleItemReveal{
+
+    from{
+
+        opacity:0;
+        transform:translateY(14px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes finaleFadeIn{
+
+    from{ opacity:0; }
+    to{ opacity:1; }
+
+}
+
+@keyframes participantReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(18px)
+            scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+#everyoneMessage{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(900px, 88vw);
+
+    color:#FFFFFF;
+
+    font-size:clamp(35px, 4.5vw, 64px);
+    line-height:1.18;
+
+    font-weight:800;
+    letter-spacing:5px;
+
+    text-shadow:
+        0 9px 34px rgba(0,0,0,.42);
+
+    opacity:0;
+    filter:blur(10px);
+
+    transform:
+        translate(-50%, calc(-50% + 24px))
+        scale(.97);
+
+    pointer-events:none;
+
+}
+
+#everyoneMessage.showEveryoneMessage{
+
+    animation:
+        everyoneMessageIn 1.4s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+}
+
+#everyoneMessage.leaveEveryoneMessage{
+
+    animation:
+        everyoneMessageOut 1.2s
+        cubic-bezier(.55,0,1,.45)
+        forwards;
+
+}
+
+@keyframes everyoneMessageIn{
+
+    from{
+
+        opacity:0;
+        filter:blur(10px);
+
+        transform:
+            translate(-50%, calc(-50% + 24px))
+            scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+        filter:blur(0);
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    }
+
+}
+
+@keyframes everyoneMessageOut{
+
+    from{
+
+        opacity:1;
+        filter:blur(0);
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    }
+
+    to{
+
+        opacity:0;
+        filter:blur(8px);
+
+        transform:
+            translate(-50%, calc(-50% - 22px))
+            scale(.98);
+
+    }
+
+}
+
+#finalQuestionBlock{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(1060px, 92vw);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:
+        translate(-50%, calc(-50% + 28px))
+        scale(.975);
+
+    transition:
+        opacity 2s ease,
+        transform 2s cubic-bezier(.22,1,.36,1),
+        visibility 0s linear 2s;
+
+}
+
+#finalQuestionBlock.showFinalQuestion{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transition:
+        opacity 2s ease,
+        transform 2s cubic-bezier(.22,1,.36,1),
+        visibility 0s;
+
+}
+
+.finalQuestionEyebrow{
+
+    opacity:.78;
+
+}
+
+#finalQuestionHeading{
+
+    margin-top:20px;
+
+    color:#FFFFFF;
+
+    font-size:clamp(48px, 6.3vw, 88px);
+    line-height:1.02;
+
+    font-weight:850;
+    letter-spacing:3px;
+
+    text-shadow:
+        0 10px 38px rgba(0,0,0,.48),
+        0 0 40px rgba(93,59,255,.12);
+
+}
+
+#finalQuestionBlock p{
+
+    margin-top:24px;
+
+    color:rgba(255,255,255,.67);
+
+    font-size:clamp(15px, 1.5vw, 20px);
+
+    opacity:0;
+
+}
+
+#finalQuestionBlock.showFinalQuestion p{
+
+    animation:
+        finaleFadeIn 1s ease
+        2.2s forwards;
+
+}
+
+#revealAnswerButton{
+
+    margin-top:38px;
+
+    padding-left:30px;
+    padding-right:30px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(18px) scale(.97);
+
+    pointer-events:none;
+
+}
+
+#revealAnswerButton.showRevealButton{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0) scale(1);
+
+    pointer-events:auto;
+
+    transition:
+        opacity .85s ease,
+        transform .85s cubic-bezier(.22,1,.36,1),
+        box-shadow .3s ease,
+        filter .3s ease;
+
+}
+
+#presentationLinkNotice{
+
+    min-height:20px;
+
+    margin-top:14px;
+
+    color:rgba(255,215,0,.72);
+
+    font-size:12px;
+    letter-spacing:.3px;
+
+    opacity:0;
+
+    transition:opacity .35s ease;
+
+}
+
+#presentationLinkNotice.showPresentationNotice{
+
+    opacity:1;
+
+}
+
+#revealAnswerButton.presentationLinkMissing{
+
+    animation:missingLinkShake .42s ease;
+
+}
+
+@keyframes missingLinkShake{
+
+    0%,100%{ transform:translateY(0) translateX(0); }
+    25%{ transform:translateY(0) translateX(-5px); }
+    75%{ transform:translateY(0) translateX(5px); }
+
+}
+
+body.finaleActive #consoleButton{
+
+    opacity:0 !important;
+    visibility:hidden;
+    pointer-events:none;
+
+}
+
+@media (max-width:900px){
+
+    .finaleScene{
+
+        padding:26px 24px;
+
+    }
+
+    #participantCards{
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+    .participantCard{
+
+        min-height:92px;
+
+    }
+
+    .participantCard:nth-child(4){
+
+        grid-column:1 / 2;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    #completionTitle{
+
+        font-size:31px;
+
+    }
+
+    .finaleLead{
+
+        font-size:14px;
+
+    }
+
+    .participantSection{
+
+        margin-top:22px;
+
+    }
+
+    #participantCards{
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+    .participantCard:nth-child(4){
+
+        grid-column:auto;
+
+    }
+
+    .participantCard:last-child{
+
+        grid-column:1 / -1;
+
+    }
+
+    .finaleActions{
+
+        width:min(360px, 92vw);
+
+        flex-direction:column-reverse;
+
+    }
+
+    .finaleButton{
+
+        width:100%;
+
+    }
+
+    #everyoneMessage{
+
+        font-size:31px;
+        letter-spacing:3px;
+
+    }
+
+    #finalQuestionHeading{
+
+        font-size:42px;
+        letter-spacing:1px;
+
+    }
+
+}
+
+@media (max-height:700px) and (min-width:901px){
+
+    .finaleScene{
+
+        padding-top:20px;
+        padding-bottom:20px;
+
+    }
+
+    #completionTitle{
+
+        margin-top:10px;
+
+        font-size:44px;
+
+    }
+
+    .finaleLead{
+
+        margin-top:8px;
+
+    }
+
+    .participantSection{
+
+        margin-top:20px;
+
+    }
+
+    .participantCard{
+
+        min-height:98px;
+
+        padding-top:11px;
+        padding-bottom:10px;
+
+    }
+
+    .finalePrompt{
+
+        margin-top:16px;
+
+    }
+
+    .finaleActions{
+
+        margin-top:10px;
+
+    }
+
+    #finalQuestionHeading{
+
+        font-size:68px;
+
+    }
+
+    #finalQuestionBlock p{
+
+        margin-top:16px;
+
+    }
+
+    #revealAnswerButton{
+
+        margin-top:27px;
+
+    }
+
+}
+
+
+  # Single deploy job since we're just deploying
+ 
